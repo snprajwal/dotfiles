@@ -1,6 +1,7 @@
 set shell zsh
 set info size
 set dircounts on
+set drawbox on
 
 map <backspace2> push zh
 map D delete

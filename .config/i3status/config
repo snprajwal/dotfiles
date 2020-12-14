@@ -24,13 +24,13 @@ order += "tztime local"
 order += "time"
 
 cpu_usage {
-	format = " %usage"
+	format = " %usage"
 	degraded_threshold = 50
 	max_threshold = 80
 }
 
 memory {
-	format = " %percentage_used"
+	format = " %percentage_used"
 	threshold_degraded = 50
 	threshold_critical = 80
 }

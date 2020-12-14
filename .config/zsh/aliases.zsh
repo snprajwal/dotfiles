@@ -50,9 +50,10 @@ alias gst='git status'
 
 # wifi
 wifi() {
-	case $1 in
-		connect) iwctl station wlan0 connect $2;;
-		*) iwctl station wlan0 scan;
-			iwctl station wlan0 get-networks;;
-	esac
+	if [[ -n $1 ]] then
+		iwctl station wlan0 connect $1
+	else
+		iwctl station wlan0 scan
+		iwctl station wlan0 get-networks
+	fi
 }
