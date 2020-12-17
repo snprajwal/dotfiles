@@ -27,6 +27,8 @@ bindkey "^[[A" history-beginning-search-backward-end
 bindkey "^[[B" history-beginning-search-forward-end
 bindkey -M menuselect '^[[Z' reverse-menu-complete
 bindkey "^[[3~" delete-char
+bindkey "^[[H" beginning-of-line
+bindkey "^[[4~" end-of-line
 bindkey -s '^O' 'lfcd\n'
 
 # History
