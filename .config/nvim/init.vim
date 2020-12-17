@@ -1,11 +1,14 @@
 " Settings
 set termguicolors
 set hidden
-set number relativenumber
+set number
+set relativenumber
+set signcolumn=yes
 set noshowmode
 set nobackup
 set noswapfile
 set nowritebackup
+set updatetime=400
 set ignorecase
 set smartcase
 set splitright
@@ -29,21 +32,17 @@ set wildmenu
 call plug#begin("~/.config/nvim/plugged")
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-airline/vim-airline'
-Plug 'dracula/vim', {'as':'dracula'}
+Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 call plug#end()
-colorscheme dracula
+
+let g:gruvbox_contrast_dark = 'hard'
+colorscheme gruvbox
 
 " Functions
-" use <tab> for trigger completion and navigate to the next complete item
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-" Show docs
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -90,13 +89,13 @@ nnoremap <silent> <S-Tab> :bprevious<CR>
 nnoremap <silent> <M-Right> :tabnext<CR>
 nnoremap <silent> <M-Left> :tabprevious<CR>
 " CoC bindings
-nmap <Leader>gd <Plug>(coc-definition)
-nmap <Leader>gr <Plug>(coc-references)
-nmap <Leader>gi <Plug>(coc-implementation)
-nnoremap <Leader>fv :CocSearch <C-r>=expand("<cword>")<CR><CR> 
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <Leader>gd <Plug>(coc-definition)
+nnoremap <Leader>gr <Plug>(coc-references)
+nnoremap <Leader>gi <Plug>(coc-implementation)
+nnoremap <leader>rn <Plug>(coc-rename)
+nnoremap <Leader>fv :CocSearch <C-r>=expand("<cword>")<CR><CR>
 " Completion
-" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<Tab>" : coc#refresh()
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 inoremap <silent> <expr> <C-Space> coc#refresh()
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"

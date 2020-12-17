@@ -7,12 +7,13 @@
 # If the above line is not correctly displayed, fix your editor first!
 
 general {
-    interval = 2
-	output_format = "i3bar"
-	colors = true
-	color_good = "#50FA7B"
-	color_degraded = "#F1FA8C"
-	color_bad = "#FF5555"
+	interval = 2
+		output_format = "i3bar"
+		colors = true
+		markup = "pango"
+		color_good = "#b8bb26"
+		color_degraded = "#fabd2f"
+		color_bad = "#fb4934"
 }
 
 
@@ -20,42 +21,43 @@ order += "cpu_usage"
 order += "memory"
 order += "wireless _first_"
 order += "battery all"
-order += "tztime local"
-order += "time"
+order += "tztime date"
+order += "tztime time"
 
 cpu_usage {
-	format = " %usage"
-	degraded_threshold = 50
-	max_threshold = 80
+	format = "<span foreground='#8ec07c'> <b>%usage</b></span>"
+		degraded_threshold = 50
+		max_threshold = 80
 }
 
 memory {
-	format = " %percentage_used"
-	threshold_degraded = 50
-	threshold_critical = 80
+	format = "<span foreground='#ebdbb2'> <b>%percentage_used</b></span>"
+		threshold_degraded = 50
+		threshold_critical = 80
 }
 
 wireless _first_ {
-        format_up = "%quality at %essid"
-        format_down = "Down"
+	format_up = "<b>%quality at %essid</b>"
+		format_down = "<b>Down</b>"
 }
 
 battery all {
-        format = "%status %percentage"
-	last_full_capacity = true
-	integer_battery_capacity = true
-	low_threshold = 20
-	threshold_type = "percentage"
-	status_chr =
-	status_bat =
-	status_full =
-	status_unk=
+	format = "<span foreground='#fe8019'>%status <b>%percentage</b></span>"
+		integer_battery_capacity = true
+		low_threshold = 20
+		threshold_type = "percentage"
+		status_chr =
+		status_bat =
+		status_full =
+		status_unk=
 }
 
-tztime local {
-        format = " %a %d %b"
+tztime date {
+	format = "<span foreground='#d3869b'> <b>%time</b></span>"
+	format_time = "%a %d %b"
 }
 
-time {
-	format = " %I:%M %P "
+tztime time {
+	format = "<span foreground='#fabd2f'> <b>%time</b></span> "
+	format_time = "%I:%M %P"
 }

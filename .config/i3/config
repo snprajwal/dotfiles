@@ -10,7 +10,7 @@ set $Locker i3lock -u -e -t -i ~/.local/share/lockscreen.png && sleep 1
 
 # Keybindings
 bindsym $mod+Return exec --no-startup-id st
-bindsym $mod+d exec --no-startup-id dmenu_run -fn "JetBrains Mono-12" -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2'
+bindsym $mod+d exec --no-startup-id dmenu_run -fn "JetBrains Mono-12" -nf '#a89984' -nb '#1d2021' -sb '#a89984' -sf '#1d2021'
 bindsym $mod+l exec --no-startup-id $Locker
 bindsym $mod+e exec --no-startup-id st -e lf
 bindsym $mod+w exec --no-startup-id firefox
@@ -110,12 +110,12 @@ assign [class="nvim"] $ws3
 default_border pixel 2 
 default_floating_border pixel 2 
 # class                 border  bground text    indicator child_border
-client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
-client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
-client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
-client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
-client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
-client.background       #F8F8F2
+client.focused          #a89984 #a89984 #ebdbb2 #a89984   #a89984
+client.focused_inactive #928374 #928374 #ebdbb2 #928374   #928374
+client.unfocused        #1d2021 #1d2021 #a89984 #1d2021   #1d2021
+client.urgent           #928374 #fb4934 #ebdbb2 #fb4934   #fb4934
+client.placeholder      #1d2021 #1d2021 #ebdbb2 #1d2021   #1d2021
+client.background       #ebdbb2
 
 bar {
 	i3bar_command i3bar --transparency
@@ -124,13 +124,14 @@ bar {
 	separator_symbol 
 	strip_workspace_numbers yes
 	colors {
-		background #282A3600
-		statusline #F8F8F2
-		separator  #44475A
-		focused_workspace  #44475A #44475A #F8F8F2
-		active_workspace   #282A36 #44475A #F8F8F2
-		inactive_workspace #282A36 #282A36 #BFBFBF
-		urgent_workspace   #FF5555 #FF5555 #F8F8F2
+		background #1d202100
+		statusline #ebdbb2
+		separator  #928374
+		# class 		   border  bground text
+		focused_workspace  #928374 #928374 #ebdbb2
+		active_workspace   #1d2021 #928374 #ebdbb2
+		inactive_workspace #1d2021 #1d2021 #a89984
+		urgent_workspace   #fb4934 #fb4934 #ebdbb2
 	}
 }
 

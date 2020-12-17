@@ -13,11 +13,10 @@ DNS=8.8.8.8
 PACMAN
 xorg xorg-xinit xclip dmidecode i3 picom alsa-utils pulseaudio pulseaudio-bluetooth pavucontrol udiskie noto-fonts ttf-font-awesome ttf-jetbrains-mono abiword gnumeric feh firefox ripgrep tmux redshift zip unzip dmenu bluez blueman blueman-applet git xfce4-power-manager dconf-editor xdg-open xdg-utils mpv zathura zathura-pdf-poppler fzf openssh scrot zsh-syntax-highlighting zsh-autosuggestions youtube-dl neofetch transmission-gtk
 AUR
-paru-bin volctl lf-bin zsh-theme-powerlevel10k-git 
+paru-bin volctl lf-bin zsh-theme-powerlevel10k-git gruvbox-dark-gtk
 EXTERNAL
 vim-plug
 paru
-dracula
 -----------
 {.zprofile}
 if [ "$(tty)" = "/dev/tty1" ]; then
@@ -28,3 +27,4 @@ fi
 ILoveCandy and Colors in /etc/pacman.conf
 edit neovim desktop file
 set up keyboard with localectl
+gruvbox for firefox
