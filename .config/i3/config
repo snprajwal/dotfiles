@@ -1,5 +1,4 @@
 # i3 config file (v4)
-
 # General
 set $mod Mod4
 font pango: JetBrains Mono 10
@@ -46,7 +45,7 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+f fullscreen toggle
 bindsym $mod+space layout toggle
 bindsym $mod+Shift+space floating toggle
-bindsym $mod+z split toggle 
+bindsym $mod+z split toggle
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -83,18 +82,18 @@ bindsym XF86MonBrightnessDown exec --no-startup-id sudo xbacklight -dec 2
 
 # Custom modes
 mode "Resize/System" {
-    bindsym e exec --no-startup-id i3-msg exit
-    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot
-    bindsym p exec --no-startup-id systemctl poweroff -i  
+	bindsym e exec --no-startup-id i3-msg exit
+	bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+	bindsym r exec --no-startup-id systemctl reboot
+	bindsym p exec --no-startup-id systemctl poweroff -i
 
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
+	bindsym Left resize shrink width 10 px or 10 ppt
+	bindsym Down resize grow height 10 px or 10 ppt
+	bindsym Up resize shrink height 10 px or 10 ppt
+	bindsym Right resize grow width 10 px or 10 ppt
 
-    bindsym Escape mode "default"
-    bindsym $mod+x mode "default"
+	bindsym Escape mode "default"
+	bindsym $mod+x mode "default"
 }
 bindsym $mod+x mode "Resize/System"
 
@@ -107,8 +106,8 @@ assign [class="st-256color" title="st"] $ws2
 assign [class="nvim"] $ws3
 
 # i3 properties
-default_border pixel 2 
-default_floating_border pixel 2 
+default_border pixel 2
+default_floating_border pixel 2
 # class                 border  bground text    indicator child_border
 client.focused          #a89984 #a89984 #ebdbb2 #a89984   #a89984
 client.focused_inactive #928374 #928374 #ebdbb2 #928374   #928374
@@ -124,7 +123,7 @@ bar {
 	separator_symbol 
 	strip_workspace_numbers yes
 	colors {
-		background #1d202100
+		background #1d202199
 		statusline #ebdbb2
 		separator  #928374
 		# class 		   border  bground text
@@ -132,7 +131,7 @@ bar {
 		active_workspace   #1d2021 #928374 #ebdbb2
 		inactive_workspace #1d2021 #1d2021 #a89984
 		urgent_workspace   #fb4934 #fb4934 #ebdbb2
-	}
+		}
 }
 
 # startup applications
