@@ -50,6 +50,8 @@ install: st
 	chmod 644 $(DESTDIR)$(MANPREFIX)/man1/st.1
 	tic -sx st.info
 	@echo Please see the README file regarding the terminfo entry of st.
+	rm config.h
+	@echo Removed configuration file
 
 uninstall:
 	rm -f $(DESTDIR)$(PREFIX)/bin/st
