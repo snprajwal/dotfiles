@@ -8,10 +8,12 @@ Name=wlan0
 
 [Network]
 DHCP=yes
+DNS=1.1.1.1
 DNS=8.8.8.8
+DNS=8.8.4.4
 -------------------------------------------------------------------
 PACMAN
-xorg xorg-xinit xclip dmidecode i3 picom alsa-utils pulseaudio pulseaudio-bluetooth pavucontrol udiskie noto-fonts ttf-font-awesome ttf-jetbrains-mono abiword gnumeric feh firefox ripgrep tmux redshift zip unzip dmenu bluez blueman blueman-applet git xfce4-power-manager dconf-editor xdg-open xdg-utils mpv zathura zathura-pdf-poppler fzf openssh scrot zsh-syntax-highlighting zsh-autosuggestions youtube-dl neofetch transmission-gtk
+xorg xorg-xinit xclip dmidecode i3 picom alsa-utils pulseaudio pulseaudio-bluetooth pavucontrol udiskie noto-fonts ttf-font-awesome ttf-jetbrains-mono abiword gnumeric feh firefox ripgrep tmux redshift zip unzip dmenu bluez blueman blueman-applet git xfce4-power-manager dconf-editor xdg-open xdg-utils mpv zathura zathura-pdf-poppler fzf openssh scrot zsh-syntax-highlighting zsh-autosuggestions youtube-dl neofetch qbittorrent man-pages
 AUR
 paru-bin volctl lf-bin zsh-theme-powerlevel10k-git gruvbox-dark-gtk
 EXTERNAL

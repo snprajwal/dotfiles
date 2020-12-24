@@ -123,7 +123,7 @@ bar {
 	separator_symbol 
 	strip_workspace_numbers yes
 	colors {
-		background #1d202199
+		background #1d2021bb
 		statusline #ebdbb2
 		separator  #928374
 		# class 		   border  bground text

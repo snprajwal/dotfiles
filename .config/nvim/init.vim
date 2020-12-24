@@ -30,13 +30,14 @@ set wildmenu
 
 " Vim-Plugged
 call plug#begin("~/.config/nvim/plugged")
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'vim-airline/vim-airline'
 Plug 'morhetz/gruvbox'
+Plug 'vim-airline/vim-airline'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-fugitive'
 call plug#end()
 
 let g:gruvbox_contrast_dark = 'hard'
