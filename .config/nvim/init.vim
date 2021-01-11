@@ -22,7 +22,6 @@ set linebreak
 set foldmethod=indent
 set nofoldenable
 set virtualedit=block
-set autochdir
 set gdefault
 set clipboard+=unnamedplus
 set path+=**
@@ -90,10 +89,10 @@ nnoremap <silent> <S-Tab> :bprevious<CR>
 nnoremap <silent> <M-Right> :tabnext<CR>
 nnoremap <silent> <M-Left> :tabprevious<CR>
 " CoC bindings
-nnoremap <Leader>gd <Plug>(coc-definition)
-nnoremap <Leader>gr <Plug>(coc-references)
-nnoremap <Leader>gi <Plug>(coc-implementation)
-nnoremap <leader>rn <Plug>(coc-rename)
+nmap <Leader>gd <Plug>(coc-definition)
+nmap <Leader>gr <Plug>(coc-references)
+nmap <Leader>gi <Plug>(coc-implementation)
+nmap <leader>rn <Plug>(coc-rename)
 nnoremap <Leader>fv :CocSearch <C-r>=expand("<cword>")<CR><CR>
 " Completion
 nnoremap <silent> K :call <SID>show_documentation()<CR>
