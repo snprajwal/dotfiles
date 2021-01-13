@@ -29,4 +29,4 @@ fi
 ILoveCandy and Colors in /etc/pacman.conf
 edit neovim desktop file
 set up keyboard with localectl
-gruvbox for firefox
+gruvbox
