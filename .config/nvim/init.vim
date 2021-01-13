@@ -8,13 +8,15 @@ set noshowmode
 set nobackup
 set noswapfile
 set nowritebackup
+set undofile
 set updatetime=400
+set nohlsearch
 set ignorecase
 set smartcase
 set splitright
 set splitbelow
 set cursorline
-set scrolloff=4
+set scrolloff=8
 set mouse=a
 set tabstop=4
 set shiftwidth=4
@@ -27,7 +29,7 @@ set clipboard+=unnamedplus
 set path+=**
 set wildmenu
 
-" Vim-Plugged
+" Plugins
 call plug#begin("~/.config/nvim/plugged")
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
@@ -39,25 +41,34 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 call plug#end()
 
-let g:gruvbox_contrast_dark = 'hard'
-colorscheme gruvbox
-
 " Functions
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
+	if (index(['vim','help'], &filetype) >= 0)
+		execute 'h '.expand('<cword>')
+	elseif (coc#rpc#ready())
+		call CocActionAsync('doHover')
+	else
+		execute '!' . &keywordprg . " " . expand('<cword>')
+	endif
 endfunction
 " Open terminal
 function! OpenTerminal()
-  split term://zsh
-  resize 10
+	split term://zsh
+	resize 10
 endfunction
-au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+" Trim trailing whitespace
+function! TrimWhitespace()
+	let l:save = winsaveview()
+	keeppatterns %s/\s\+$//e
+	call winrestview(l:save)
+endfunction
+
+" Autocommands
+autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
+augroup clean
+	autocmd!
+	autocmd BufWritePre * :call TrimWhitespace()
+augroup end
 
 " Keybindings
 let mapleader = "\<Space>"
@@ -70,6 +81,7 @@ nnoremap <silent> <C-n> :enew<CR>
 nnoremap <Leader><Space> i<Space><Esc>
 nnoremap <Leader>b :ls<CR>:b
 nnoremap <silent> <Leader>e :Files<CR>
+nnoremap <silent> <Leader>f :GFiles<CR>
 nnoremap <silent> <Leader>t :call OpenTerminal()<CR>
 nnoremap <silent> <Leader>cd :cd %:p:h<CR>:pwd<CR>
 nnoremap <silent> <Esc> :noh<CR>
@@ -102,6 +114,8 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent> <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 
 " Plugins
+let g:gruvbox_contrast_dark = 'hard'
+colorscheme gruvbox
 if !exists('g:airline_symbols') | let g:airline_symbols = {} | endif
 let g:airline_left_sep = ' '
 let g:airline_left_alt_sep = ''
