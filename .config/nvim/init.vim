@@ -28,7 +28,6 @@ set gdefault
 set clipboard+=unnamedplus
 set path+=**
 set wildmenu
-let $FZF_DEFAULT_COMMAND='rg --files -g \!.cache -g \!.mozilla -g\!node_modules'
 
 " Plugins
 call plug#begin("~/.config/nvim/plugged")
@@ -40,6 +39,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'preservim/nerdtree'
 call plug#end()
 
 " Functions
@@ -81,7 +81,7 @@ nnoremap U <C-r>
 nnoremap <silent> <C-n> :enew<CR>
 nnoremap <Leader><Space> i<Space><Esc>
 nnoremap <Leader>b :ls<CR>:b
-nnoremap <silent> <Leader>e :Vex<CR>
+nnoremap <silent> <Leader>e :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>s :Files<CR>
 nnoremap <silent> <Leader>t :call OpenTerminal()<CR>
 nnoremap <silent> <Leader>cd :cd %:p:h<CR>:pwd<CR>
@@ -133,6 +133,5 @@ let g:airline#extensions#tabline#left_alt_sep = ' '
 let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#right_alt_sep = ''
 let g:fzf_layout = { 'down': '~30%' }
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
+let $FZF_DEFAULT_COMMAND='rg --files -g \!.cache -g \!.mozilla -g\!node_modules'
+let NERDTreeQuitOnOpen = 1

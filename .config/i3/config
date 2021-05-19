@@ -100,7 +100,7 @@ bindsym $mod+x mode "Resize/System"
 # Window rules
 for_window [window_role="pop-up"] floating enable
 for_window [class="mpv"] floating enable
-for_window [class="firefox"] layout stacked
+for_window [class="firefox"] layout tabbed
 assign [class="firefox"] $ws1
 assign [class="st-256color" title="tmux|st"] $ws2
 assign [class="nvim"] $ws3
@@ -138,7 +138,7 @@ bar {
 exec_always --no-startup-id feh --no-fehbg --bg-fill --randomize ~/.local/share/wallpaper/
 exec --no-startup-id picom
 exec --no-startup-id udiskie -aNsF
-exec --no-startup-id redshift
+exec --no-startup-id redshift -l 12.88:77.6
 exec --no-startup-id volctl
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id blueman-applet

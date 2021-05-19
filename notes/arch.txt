@@ -11,7 +11,7 @@ DHCP=yes
 DNS=1.1.1.1
 -------------------------------------------------------------------
 PACMAN
-xorg xorg-xinit xclip dmidecode i3 picom alsa-utils pulseaudio pulseaudio-bluetooth pavucontrol ntfs-3g udiskie noto-fonts ttf-font-awesome ttf-jetbrains-mono libreoffice-still feh firefox ripgrep tmux redshift zip unzip dmenu bluez blueman blueman-applet git xfce4-power-manager dconf-editor xdg-open xdg-utils mpv zathura zathura-pdf-poppler fzf openssh scrot zsh-syntax-highlighting zsh-autosuggestions youtube-dl neofetch qbittorrent man-pages galculator gsimplecal
+xorg xorg-xinit xclip dmidecode i3 picom alsa-utils pulseaudio pulseaudio-bluetooth pavucontrol ntfs-3g udiskie noto-fonts ttf-font-awesome ttf-jetbrains-mono libreoffice-still feh firefox ripgrep tmux redshift zip unzip dmenu bluez blueman blueman-applet git xfce4-power-manager dconf-editor xdg-open xdg-utils mpv zathura zathura-pdf-poppler fzf openssh scrot zsh-syntax-highlighting zsh-autosuggestions youtube-dl neofetch qbittorrent man-pages galculator gsimplecal filezilla
 AUR
 paru-bin volctl lf-bin zsh-theme-powerlevel10k-git gruvbox-dark-gtk
 EXTERNAL
