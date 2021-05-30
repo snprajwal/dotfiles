@@ -88,10 +88,6 @@ nnoremap <silent> <Leader>cd :cd %:p:h<CR>:pwd<CR>
 nnoremap <silent> <Esc> :noh<CR>
 tnoremap <Esc> <C-\><C-n>
 " Better navigation mappings
-nnoremap <silent> <C-j> :resize -2<CR>
-nnoremap <silent> <C-k> :resize +2<CR>
-nnoremap <silent> <C-h> :vertical resize -2<CR>
-nnoremap <silent> <C-l> :vertical resize +2<CR>
 nnoremap <M-h> <C-w>h
 nnoremap <M-j> <C-w>j
 nnoremap <M-k> <C-w>k
@@ -135,3 +131,5 @@ let g:airline#extensions#tabline#right_alt_sep = ''
 let g:fzf_layout = { 'down': '~30%' }
 let $FZF_DEFAULT_COMMAND='rg --files -g \!.cache -g \!.mozilla -g\!node_modules'
 let NERDTreeQuitOnOpen = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeWinPos = "right"

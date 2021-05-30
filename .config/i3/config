@@ -136,6 +136,7 @@ bar {
 
 # startup applications
 exec_always --no-startup-id feh --no-fehbg --bg-fill --randomize ~/.local/share/wallpaper/
+exec --no-startup-id xmodmap -e "keycode 135 = Super_R"
 exec --no-startup-id picom
 exec --no-startup-id udiskie -aNsF
 exec --no-startup-id redshift -l 12.88:77.6
