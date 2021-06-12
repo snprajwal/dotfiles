@@ -15,9 +15,9 @@ bindsym $mod+e exec --no-startup-id st -e lf
 bindsym $mod+w exec --no-startup-id firefox
 bindsym $mod+c exec --no-startup-id st -c nvim -e nvim +Files
 # Screenshots
-bindsym --release Print exec --no-startup-id scrot -z -s '/home/prajwalsn/%d%b-%H%M.png' -e 'xclip -selection clipboard -t image/png -i $f'
-bindsym --release Shift+Print exec --no-startup-id scrot -z -u '/home/prajwalsn/%d%b-%H%M.png' -e 'xclip -selection clipboard -t image/png -i $f'
-bindsym --release $mod+Print exec --no-startup-id scrot -z '/home/prajwalsn/%d%b-%H%M.png' -e 'xclip -selection clipboard -t image/png -i $f'
+bindsym --release Print exec --no-startup-id scrot -z -s '/home/prajwalsn/misc/%d%b-%H%M.png' -e 'xclip -selection clipboard -t image/png -i $f'
+bindsym --release Shift+Print exec --no-startup-id scrot -z -u '/home/prajwalsn/misc/%d%b-%H%M.png' -e 'xclip -selection clipboard -t image/png -i $f'
+bindsym --release $mod+Print exec --no-startup-id scrot -z '/home/prajwalsn/misc/%d%b-%H%M.png' -e 'xclip -selection clipboard -t image/png -i $f'
 
 # Workspace variables
 set $ws1 1:
