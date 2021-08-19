@@ -4,7 +4,7 @@
   "filterLinkHints": false,
   "waitForEnterForFilteredHints": true,
   "hideHud": false,
-  "keyMappings": "map t Vomnibar.activateInNewTab",
+  "keyMappings": "map t Vomnibar.activateInNewTab\nmap D passNextKey",
   "linkHintCharacters": "sadfjklewcmpgh",
   "linkHintNumbers": "0123456789",
   "newTabUrl": "about:newtab",

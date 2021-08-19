@@ -4,7 +4,7 @@ alias s=sudo
 alias df='df -h'
 alias ds='du -h -d 1'
 alias q=exit
-alias sv='sudo -E nvim'
+alias sv='sudoedit'
 alias sys='sudo systemctl'
 alias v=nvim
 alias yt="youtube-dl -x -o '~/music/concerts/%(title)s.%(ext)s'"
@@ -39,14 +39,15 @@ alias pu="p -Syu; paru -Sua; nvim --headless +PlugUpdate +CocUpdate +qa"
 
 # git
 alias g=git
-alias gps='git push'
-alias gpl='git pull'
-alias ga='git add'
-alias gcm='git commit -m'
-alias gcma='git commit -a -m'
-alias gd='git diff'
-alias gcl='git clone'
-alias gst='git status'
+alias gps="g push"
+alias gpl="g pull"
+alias ga="g add"
+alias gcm="g commit -m"
+alias gcma="g commit -a -m"
+alias gd="g diff"
+alias gcl="g clone"
+alias gst="g status"
+alias gco="g checkout"
 
 # wifi
 wifi() {

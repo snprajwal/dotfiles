@@ -40,32 +40,16 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'preservim/nerdtree'
+Plug 'airblade/vim-rooter'
 call plug#end()
 
-" Functions
-function! s:show_documentation()
-	if (index(['vim','help'], &filetype) >= 0)
-		execute 'h '.expand('<cword>')
-	elseif (coc#rpc#ready())
-		call CocActionAsync('doHover')
-	else
-		execute '!' . &keywordprg . " " . expand('<cword>')
-	endif
-endfunction
-" Open terminal
-function! OpenTerminal()
-	split term://zsh
-	resize 10
-endfunction
-" Trim trailing whitespace
+" Trailing spaces
 function! TrimWhitespace()
 	let l:save = winsaveview()
 	keeppatterns %s/\s\+$//e
 	call winrestview(l:save)
 endfunction
 
-" Autocommands
 autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
 augroup clean
 	autocmd!
@@ -75,6 +59,7 @@ augroup end
 " Keybindings
 let mapleader = "\<Space>"
 cabbrev vb vert sb
+tnoremap <Esc> <C-\><C-n>
 nnoremap ; :
 nnoremap : ;
 nnoremap Y y$
@@ -82,34 +67,36 @@ nnoremap U <C-r>
 nnoremap <silent> <C-n> :enew<CR>
 nnoremap <Leader><Space> i<Space><Esc>
 nnoremap <Leader>b :ls<CR>:b
-nnoremap <silent> <Leader>e :NERDTreeToggle<CR>
-nnoremap <silent> <Leader>s :Files<CR>
-nnoremap <silent> <Leader>t :call OpenTerminal()<CR>
-nnoremap <silent> <Leader>cd :cd %:p:h<CR>:pwd<CR>
+nnoremap <silent> <Leader>t	:split term://zsh<CR>
 nnoremap <silent> <Esc> :noh<CR>
-tnoremap <Esc> <C-\><C-n>
+nnoremap <silent> <Leader>e :Files<CR>
+nnoremap <silent> <Leader>gg :G<CR>
 " Better navigation mappings
 nnoremap <M-h> <C-w>h
+nnoremap <M-Left> <C-w>h
 nnoremap <M-j> <C-w>j
+nnoremap <M-Down> <C-w>j
 nnoremap <M-k> <C-w>k
+nnoremap <M-Up> <C-w>k
 nnoremap <M-l> <C-w>l
+nnoremap <M-Right> <C-w>l
 nnoremap <M-x> <C-w>x
 nnoremap <silent> <Tab> :bnext<CR>
 nnoremap <silent> <S-Tab> :bprevious<CR>
-nnoremap <silent> <M-Right> :tabnext<CR>
-nnoremap <silent> <M-Left> :tabprevious<CR>
-" CoC bindings
+" nnoremap <silent> <M-Right> :tabnext<CR>
+" nnoremap <silent> <M-Left> :tabprevious<CR>
+" Code mappings
 nmap <Leader>gd <Plug>(coc-definition)
 nmap <Leader>gr <Plug>(coc-references)
 nmap <Leader>gi <Plug>(coc-implementation)
 nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>do <Plug>(coc-codeaction)
 nnoremap <Leader>fv :CocSearch <C-r>=expand("<cword>")<CR><CR>
-" Completion
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-inoremap <silent> <expr> <C-Space> coc#refresh()
+nnoremap <silent> K :call CocActionAsync('doHover')<CR>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent> <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
+nnoremap <silent> <F5> :split term://zsh -c 'g++ % && ./a.out'<CR>
 
 " Plugins
 let g:gruvbox_contrast_dark = 'hard'
@@ -129,8 +116,6 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = ' '
 let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#right_alt_sep = ''
+let g:rooter_change_directory_for_non_project_files = 'current'
 let g:fzf_layout = { 'down': '~30%' }
 let $FZF_DEFAULT_COMMAND='rg --files -g \!.cache -g \!.mozilla -g\!node_modules'
-let NERDTreeQuitOnOpen = 1
-let NERDTreeMinimalUI = 1
-let NERDTreeWinPos = "right"
