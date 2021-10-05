@@ -1,11 +1,6 @@
 {
-	"coc.preferences.formatOnType": true,
-	"coc.preferences.formatOnTypeFiletypes": [
-		"javascript", "json",
-		"html", "css",
-		"python",
-		"go",
-		"c", "cpp"
+	"coc.preferences.formatOnSaveFiletypes": [
+		"*"
 	],
 	// Python
 	"python.linting.enabled": true,
