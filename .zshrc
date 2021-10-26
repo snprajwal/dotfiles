@@ -38,7 +38,7 @@ HISTFILE=~/.config/zsh/history.zsh
 
 # Variables
 export GPG_TTY=$TTY
-export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.local/bin:$(go env GOPATH)/bin
 export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/nvim
 export ZSH=$HOME/.config/zsh

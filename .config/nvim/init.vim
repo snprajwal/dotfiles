@@ -41,6 +41,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
+Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 
 " Trailing spaces
