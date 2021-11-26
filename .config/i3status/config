@@ -53,11 +53,9 @@ battery all {
 }
 
 tztime date {
-	format = "<span foreground='#d3869b'> <b>%time</b></span>"
-	format_time = "%a %d %b"
+	format = "<span foreground='#d3869b'> <b>%a %d %b</b></span>"
 }
 
 tztime time {
-	format = "<span foreground='#fabd2f'> <b>%time</b></span> "
-	format_time = "%I:%M %P"
+	format = "<span foreground='#fabd2f'> <b>%I:%M %P</b></span> "
 }

@@ -13,6 +13,7 @@ bindsym $mod+d exec --no-startup-id dmenu_run -fn "JetBrains Mono-12" -nf '#a899
 bindsym $mod+l exec --no-startup-id $Locker
 bindsym $mod+e exec --no-startup-id st -e lf
 bindsym $mod+w exec --no-startup-id firefox
+bindsym $mod+Shift+w exec --no-startup-id firefox -P Work
 bindsym $mod+c exec --no-startup-id st -c nvim -e nvim +Files
 # Screenshots
 bindsym --release Print exec --no-startup-id scrot -z -s '/home/prajwalsn/misc/%d%b-%H%M.png' -e 'xclip -selection clipboard -t image/png -i $f'
@@ -74,8 +75,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # Function key controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(pactl get-default-sink) +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(pactl get-default-sink) -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 bindsym XF86MonBrightnessUp exec --no-startup-id sudo xbacklight -inc 2
 bindsym XF86MonBrightnessDown exec --no-startup-id sudo xbacklight -dec 2
@@ -138,6 +139,7 @@ bar {
 exec_always --no-startup-id feh --no-fehbg --bg-fill --randomize ~/.local/share/wallpaper/
 exec --no-startup-id xmodmap -e "keycode 135 = Super_R"
 exec --no-startup-id picom
+exec --no-startup-id dunst
 exec --no-startup-id udiskie -aNsF
 exec --no-startup-id redshift -l 12.88:77.6
 exec --no-startup-id volctl

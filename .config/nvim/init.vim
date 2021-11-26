@@ -73,19 +73,15 @@ nnoremap <silent> <Esc> :noh<CR>
 nnoremap <silent> <Leader>e :Files<CR>
 nnoremap <silent> <Leader>gg :G<CR>
 " Better navigation mappings
-nnoremap <M-h> <C-w>h
 nnoremap <M-Left> <C-w>h
-nnoremap <M-j> <C-w>j
 nnoremap <M-Down> <C-w>j
-nnoremap <M-k> <C-w>k
 nnoremap <M-Up> <C-w>k
-nnoremap <M-l> <C-w>l
 nnoremap <M-Right> <C-w>l
 nnoremap <M-x> <C-w>x
 nnoremap <silent> <Tab> :bnext<CR>
 nnoremap <silent> <S-Tab> :bprevious<CR>
-" nnoremap <silent> <M-Right> :tabnext<CR>
-" nnoremap <silent> <M-Left> :tabprevious<CR>
+nnoremap <silent> <C-Right> :tabnext<CR>
+nnoremap <silent> <C-Left> :tabprevious<CR>
 " Code mappings
 nmap <Leader>gd <Plug>(coc-definition)
 nmap <Leader>gr <Plug>(coc-references)
