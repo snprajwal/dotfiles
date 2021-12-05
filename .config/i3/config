@@ -102,6 +102,7 @@ bindsym $mod+x mode "Resize/System"
 for_window [window_role="pop-up"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="firefox"] layout tabbed
+for_window [class="nvim"] layout tabbed
 assign [class="firefox"] $ws1
 assign [class="st-256color" title="tmux|st"] $ws2
 assign [class="nvim"] $ws3

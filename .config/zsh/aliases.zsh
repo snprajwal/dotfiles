@@ -17,6 +17,7 @@ alias -g rd='rm -r'
 
 # configs
 alias dot='git --git-dir=$HOME/.local/dotfiles/ --work-tree=$HOME'
+alias per='git --git-dir=$HOME/.local/personal/ --work-tree=$HOME'
 alias cfi='nvim ~/.config/i3/config'
 alias cfv='nvim ~/.config/nvim/init.vim'
 alias cfz='nvim ~/.zshrc'
