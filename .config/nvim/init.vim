@@ -44,13 +44,24 @@ Plug 'airblade/vim-rooter'
 Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 
-" Trailing spaces
+" Functions
 function! TrimWhitespace()
 	let l:save = winsaveview()
 	keeppatterns %s/\s\+$//e
 	call winrestview(l:save)
 endfunction
+" Show hover, else pull up Vim help
+function! s:ShowDocumentation()
+	if (index(['vim','help'], &filetype) >= 0)
+		execute 'h '.expand('<cword>')
+	elseif (coc#rpc#ready())
+		call CocActionAsync('doHover')
+	else
+		execute '!' . &keywordprg . " " . expand('<cword>')
+	endif
+endfunction
 
+" Autocommands
 autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
 augroup clean
 	autocmd!
@@ -89,13 +100,13 @@ nmap <Leader>gi <Plug>(coc-implementation)
 nmap <leader>rn <Plug>(coc-rename)
 nmap <leader>do <Plug>(coc-codeaction)
 nnoremap <Leader>fv :CocSearch <C-r>=expand("<cword>")<CR><CR>
-nnoremap <silent> K :call CocActionAsync('doHover')<CR>
+nnoremap <silent> K :call <SID>ShowDocumentation()<CR>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent> <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 nnoremap <silent> <F5> :split term://zsh -c 'g++ % && ./a.out'<CR>
 
-" Plugins
+" Plugin configurations
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 if !exists('g:airline_symbols') | let g:airline_symbols = {} | endif
