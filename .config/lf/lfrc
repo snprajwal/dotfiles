@@ -11,3 +11,5 @@ map gu cd /usr/share
 map ge cd /etc
 map gd cd /run/media/prajwalsn
 map gn push %mkdir<space>
+
+cmd open &setsid $OPENER $f

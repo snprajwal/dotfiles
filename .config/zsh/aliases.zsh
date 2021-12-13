@@ -28,7 +28,7 @@ alias cft='nvim ~/.tmux.conf'
 alias -g H='| head'
 alias -g T='| tail'
 alias -g G='| rg'
-alias -g L='| less'
+alias -g L='| less -R'
 
 # packages
 alias p='sudo pacman'
@@ -52,10 +52,16 @@ alias gco="g checkout"
 
 # wifi
 wifi() {
-	if [[ -n $1 ]] then
-		iwctl station wlan0 connect $1
-	else
-		iwctl station wlan0 scan
-		iwctl station wlan0 get-networks
-	fi
+	case "$1" in
+		"")
+			iwctl station wlan0 scan
+			iwctl station wlan0 get-networks
+			;;
+		reset)
+			sudo systemctl restart iwd.service
+			;;
+		*)
+			iwctl station wlan0 connect $1
+			;;
+	esac
 }
