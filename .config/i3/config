@@ -10,6 +10,7 @@ set $Locker i3lock -u -e -t -i ~/.local/share/lockscreen.png && sleep 1
 # Keybindings
 bindsym $mod+Return exec --no-startup-id st
 bindsym $mod+d exec --no-startup-id dmenu_run -fn "JetBrains Mono-12" -nf '#a89984' -nb '#1d2021' -sb '#a89984' -sf '#1d2021'
+bindsym $mod+p exec --no-startup-id clipmenu -i -fn "JetBrains Mono-12" -nf '#a89984' -nb '#1d2021' -sb '#a89984' -sf '#1d2021'
 bindsym $mod+l exec --no-startup-id $Locker
 bindsym $mod+e exec --no-startup-id st -e lf
 bindsym $mod+w exec --no-startup-id firefox
@@ -38,7 +39,6 @@ bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
-bindsym $mod+p focus parent
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
