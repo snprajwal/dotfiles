@@ -8,6 +8,8 @@ setopt prompt_subst
 setopt auto_cd
 setopt hist_ignore_dups
 autoload -Uz colors compinit
+autoload -Uz up-line-or-beginning-search
+autoload -Uz down-line-or-beginning-search
 colors
 eval "$(dircolors)"
 zstyle ':completion:*' menu select
@@ -16,10 +18,12 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
 bindkey -e
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
 
 # Keybindings
-bindkey "^[[A" history-beginning-search-backward
-bindkey "^[[B" history-beginning-search-forward
+bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
 bindkey -M menuselect '^[[Z' reverse-menu-complete
 bindkey "^[[3~" delete-char
 bindkey "^[[H" beginning-of-line
