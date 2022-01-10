@@ -36,8 +36,6 @@ SAVEHIST=10000
 HISTFILE=~/.config/zsh/history.zsh
 
 # Variables
-export TMOUT=120
-export TRAPALRM() { cmatrix -sbu 10 }
 export GPG_TTY=$TTY
 export PATH=$PATH:$HOME/.local/bin:$(go env GOPATH)/bin
 export EDITOR=/usr/bin/nvim

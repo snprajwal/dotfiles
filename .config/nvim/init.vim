@@ -62,6 +62,7 @@ function! s:ShowDocumentation()
 endfunction
 
 " Autocommands
+autocmd FileType text let b:coc_suggest_disable = 1
 autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
 augroup clean
 	autocmd!
