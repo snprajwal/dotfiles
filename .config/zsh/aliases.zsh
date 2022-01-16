@@ -1,54 +1,44 @@
 # general aliases
-alias c=clear
-alias s=sudo
-alias df='df -h'
-alias ds='du -h -d 1'
-alias q=exit
-alias sv='sudoedit'
-alias sys='sudo systemctl'
-alias v=nvim
-alias yt="youtube-dl -x -o '~/music/concerts/%(title)s.%(ext)s'"
-alias ls='ls --color'
-alias l="ls -lFh"
-alias la="ls -lAFh"
-alias t=tmux
 alias -g md='mkdir -p'
 alias -g rd='rm -r'
+alias c=clear
+alias df='df -h'
+alias ds='du -h -d 1'
+alias g=git
+alias l="ls -lFh"
+alias la="ls -lAFh"
+alias ls='ls --color'
+alias q=exit
+alias s=sudo
+alias sv='sudoedit'
+alias sys='sudo systemctl'
+alias t=tmux
+alias v=nvim
+alias yt="youtube-dl -x -o '~/music/concerts/%(title)s.%(ext)s'"
 
 # configs
-alias dot='git --git-dir=$HOME/.local/dotfiles/ --work-tree=$HOME'
-alias per='git --git-dir=$HOME/.local/personal/ --work-tree=$HOME'
+alias cfa='nvim ~/.config/zsh/aliases.zsh'
 alias cfi='nvim ~/.config/i3/config'
+alias cft='nvim ~/.tmux.conf'
 alias cfv='nvim ~/.config/nvim/init.vim'
 alias cfz='nvim ~/.zshrc'
-alias cfa='nvim ~/.config/zsh/aliases.zsh'
-alias cft='nvim ~/.tmux.conf'
+alias dot='git --git-dir=$HOME/.local/dotfiles/ --work-tree=$HOME'
+alias per='git --git-dir=$HOME/.local/personal/ --work-tree=$HOME'
 
 # pipes
-alias -g H='| head'
-alias -g T='| tail'
 alias -g G='| rg'
+alias -g H='| head'
 alias -g L='| less -R'
+alias -g T='| tail'
 
 # packages
 alias p='sudo pacman'
 alias pi="p -S"
-alias prm="p -Rns"
 alias pmir='reflector -c IN --sort rate | sudo tee /etc/pacman.d/mirrorlist; \
 			reflector -l 20 --sort rate | sudo tee -a /etc/pacman.d/mirrorlist'
+alias prm="p -Rns"
 alias pu="p -Syu; paru -Sua; nvim --headless +PlugUpdate +CocUpdate +qa"
 
-# git
-alias g=git
-alias gps="g push"
-alias gpl="g pull"
-alias ga="g add"
-alias gcm="g commit"
-alias gcms="g commit -s"
-alias gd="g diff"
-alias gcl="g clone"
-alias gst="g status"
-alias gco="g checkout"
 
 # wifi
 wifi() {
