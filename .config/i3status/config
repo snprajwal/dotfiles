@@ -8,12 +8,12 @@
 
 general {
 	interval = 2
-		output_format = "i3bar"
-		colors = true
-		markup = "pango"
-		color_good = "#b8bb26"
-		color_degraded = "#fabd2f"
-		color_bad = "#fb4934"
+	output_format = "i3bar"
+	colors = true
+	markup = "pango"
+	color_good = "#b8bb26"
+	color_degraded = "#fabd2f"
+	color_bad = "#fb4934"
 }
 
 
@@ -25,37 +25,37 @@ order += "tztime date"
 order += "tztime time"
 
 cpu_usage {
-	format = "<span foreground='#8ec07c'> <b> %usage</b></span>"
-		degraded_threshold = 50
-		max_threshold = 80
+	format = "<span foreground='#8ec07c'><b> %usage</b></span>"
+	degraded_threshold = 50
+	max_threshold = 80
 }
 
 memory {
-	format = "<span foreground='#ebdbb2'> <b> %percentage_used</b></span>"
-		threshold_degraded = 50
-		threshold_critical = 80
+	format = "<span foreground='#ebdbb2'><b> %percentage_used</b></span>"
+	threshold_degraded = 50
+	threshold_critical = 80
 }
 
 wireless _first_ {
-	format_up = "<b>%quality at %essid</b>"
-		format_down = "<b>Down</b>"
+	format_up = "<b>%quality @ %essid</b>"
+	format_down = "<b>Down</b>"
 }
 
 battery all {
 	format = "<span foreground='#fe8019'>%status<b> %percentage</b></span>"
-		integer_battery_capacity = true
-		low_threshold = 20
-		threshold_type = "percentage"
-		status_chr =
-		status_bat =
-		status_full =
-		status_unk=
+	integer_battery_capacity = true
+	low_threshold = 20
+	threshold_type = "percentage"
+	status_chr =
+	status_bat =
+	status_full =
+	status_unk=
 }
 
 tztime date {
-	format = "<span foreground='#d3869b'> <b> %a %d %b</b></span>"
+	format = "<span foreground='#d3869b'><b> %a %d %b</b></span>"
 }
 
 tztime time {
-	format = "<span foreground='#fabd2f'> <b> %I:%M %P</b></span> "
+	format = "<span foreground='#fabd2f'><b> %I:%M %P</b></span> "
 }

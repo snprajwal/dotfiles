@@ -1,7 +1,7 @@
 # i3 config file (v4)
 # General
 set $mod Mod4
-font pango: JetBrains Mono 10
+font pango: Noto Sans 11
 floating_modifier $mod
 
 # Locker
@@ -148,4 +148,4 @@ exec --no-startup-id volctl
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id blueman-applet
 exec --no-startup-id firefox
-exec --no-startup-id st
+exec --no-startup-id st -e tmux
