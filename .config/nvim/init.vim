@@ -31,7 +31,7 @@ set wildmenu
 
 " Plugins
 call plug#begin("~/.config/nvim/plugged")
-Plug 'sainnhe/everforest'
+Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-surround'
@@ -45,12 +45,10 @@ Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 
 " Plugin configurations
-let g:everforest_background = 'hard'
-let g:everforest_transparent_background = 1
-let g:everforest_diagnostic_text_highlight = 1
-colorscheme everforest
+let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_italic = 1
+colorscheme gruvbox
 if !exists('g:airline_symbols') | let g:airline_symbols = {} | endif
-let g:airline_theme = 'everforest'
 let g:airline_left_sep = ' '
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
@@ -85,6 +83,8 @@ function! s:ShowDocumentation()
 endfunction
 
 " Autocommands
+autocmd VimEnter * hi Normal guibg=none ctermbg=none
+autocmd VimEnter * hi SignColumn guibg=none ctermbg=none
 autocmd FileType text let b:coc_suggest_disable = 1
 autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
 augroup clean

@@ -4,9 +4,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Zsh-specific configuration
-setopt prompt_subst
-setopt auto_cd
-setopt hist_ignore_dups
+setopt promptsubst correctall histsavenodups histignorealldups
 autoload -Uz colors compinit
 autoload -Uz up-line-or-beginning-search
 autoload -Uz down-line-or-beginning-search
