@@ -46,7 +46,6 @@ call plug#end()
 
 " Plugin configurations
 let g:everforest_background = 'hard'
-let g:everforest_ui_contrast = 'hard'
 let g:everforest_transparent_background = 1
 let g:everforest_diagnostic_text_highlight = 1
 colorscheme everforest
@@ -67,8 +66,6 @@ let g:airline#extensions#tabline#left_alt_sep = ' '
 let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#right_alt_sep = ''
 let g:rooter_change_directory_for_non_project_files = 'current'
-let g:fzf_layout = { 'down': '~30%' }
-let $FZF_DEFAULT_COMMAND='rg --files -g \!.cache -g \!.mozilla -g\!node_modules'
 
 " Functions
 function! TrimWhitespace()
