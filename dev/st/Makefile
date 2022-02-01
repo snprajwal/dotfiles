@@ -52,6 +52,8 @@ install: st
 	@echo Please see the README file regarding the terminfo entry of st.
 	rm config.h
 	@echo Removed configuration file
+	rm st
+	@echo Removed binary
 
 uninstall:
 	rm -f $(DESTDIR)$(PREFIX)/bin/st

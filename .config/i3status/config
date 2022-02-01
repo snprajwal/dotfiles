@@ -42,7 +42,7 @@ wireless _first_ {
 }
 
 battery all {
-	format = "<span foreground='#fe8019'>%status<b> %percentage</b></span>"
+	format = "<span foreground='#83a598'>%status<b> %percentage</b></span>"
 	integer_battery_capacity = true
 	low_threshold = 20
 	threshold_type = "percentage"
@@ -53,7 +53,7 @@ battery all {
 }
 
 tztime date {
-	format = "<span foreground='#d3869b'><b> %a %d %b</b></span>"
+	format = "<span foreground='#fe8019'><b> %a %d %b</b></span>"
 }
 
 tztime time {

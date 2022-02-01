@@ -1,6 +1,5 @@
 " Settings
 set termguicolors
-set hidden
 set number
 set relativenumber
 set signcolumn=yes
@@ -16,7 +15,7 @@ set smartcase
 set splitright
 set splitbelow
 set cursorline
-set scrolloff=8
+set scrolloff=6
 set mouse=a
 set tabstop=4
 set shiftwidth=4
@@ -26,8 +25,6 @@ set nofoldenable
 set virtualedit=block
 set gdefault
 set clipboard+=unnamedplus
-set path+=**
-set wildmenu
 
 " Plugins
 call plug#begin("~/.config/nvim/plugged")
@@ -63,7 +60,7 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = ' '
 let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#right_alt_sep = ''
-let g:rooter_change_directory_for_non_project_files = 'current'
+let g:rooter_change_directory_for_non_project_files = 'home'
 
 " Functions
 function! TrimWhitespace()
@@ -85,7 +82,7 @@ endfunction
 " Autocommands
 autocmd VimEnter * hi Normal guibg=none ctermbg=none
 autocmd VimEnter * hi SignColumn guibg=none ctermbg=none
-autocmd FileType text let b:coc_suggest_disable = 1
+autocmd FileType text let b:coc_enabled = 0
 autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
 augroup clean
 	autocmd!
@@ -128,4 +125,4 @@ nnoremap <silent> K :call <SID>ShowDocumentation()<CR>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent> <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
-nnoremap <silent> <F5> :split term://zsh -c 'g++ % && ./a.out'<CR>
+nnoremap <silent> <F5> :split term://zsh -c 'g++ % -o ~/dev/cp.out && ~/dev/cp.out'<CR>
