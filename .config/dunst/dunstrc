@@ -17,19 +17,20 @@ dmenu = /bin/dmenu -p "Dunst"
 browser = /bin/firefox
 always_run_script = true
 separator_color = "#d5c4a1"
-corner_radius = 3
+corner_radius = 10
+mouse_right_click = context
 
 [urgency_low]
 frame_color = "#d5c4a1"
 background = "#3c3836"
 foreground = "#665c54"
-timeout = 6
+timeout = 4
 
 [urgency_normal]
 frame_color = "#d5c4a1"
 background = "#504945"
 foreground = "#d5c4a1"
-timeout = 8
+timeout = 6
 
 [urgency_critical]
 frame_color = "#d5c4a1"

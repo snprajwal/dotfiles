@@ -42,6 +42,8 @@ alias pu="p -Syu; paru -Sua; nvim --headless +PlugUpdate +CocUpdate +qa"
 
 # wifi
 wifi() {
+	local HOME='Oromis'
+	local HOTSPOT='Oromis - 4'
 	case "$1" in
 		"")
 			iwctl station wlan0 scan
@@ -49,6 +51,12 @@ wifi() {
 			;;
 		reset)
 			sudo systemctl restart iwd.service
+			;;
+		home)
+			iwctl station wlan0 connect $HOME
+			;;
+		hs)
+			iwctl station wlan0 connect $HOTSPOT
 			;;
 		*)
 			iwctl station wlan0 connect $1
