@@ -33,6 +33,7 @@ alias -g T='| tail'
 
 # packages
 alias p='sudo pacman'
+alias pd='DIFFPROG="nvim -d" sudo -E pacdiff'
 alias pi="p -S"
 alias pmir='reflector -c IN --sort rate | sudo tee /etc/pacman.d/mirrorlist; \
 			reflector -l 20 --sort rate | sudo tee -a /etc/pacman.d/mirrorlist'
