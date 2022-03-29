@@ -25,7 +25,7 @@ order += "tztime date"
 order += "tztime time"
 
 cpu_usage {
-	format = "<span foreground='#8ec07c'><b> %usage</b></span>"
+	format = "<span foreground='#8ec07c'><b> %usage</b></span>"
 	degraded_threshold = 50
 	max_threshold = 80
 }

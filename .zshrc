@@ -4,7 +4,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Zsh-specific configuration
-setopt promptsubst histsavenodups histignorealldups
+setopt promptsubst histsavenodups histignorealldups autocd
 autoload -Uz colors compinit
 autoload -Uz up-line-or-beginning-search
 autoload -Uz down-line-or-beginning-search
@@ -38,6 +38,7 @@ export GPG_TTY=$TTY
 export PATH=$PATH:$HOME/.local/bin:$(go env GOPATH)/bin
 export EDITOR=/usr/bin/nvim
 export VISUAL=/usr/bin/nvim
+export DIFFPROG="nvim -d"
 export ZSH=$HOME/.config/zsh
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --color fg:#ebdbb2,bg:#282828,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'
 export FZF_DEFAULT_COMMAND='rg --files -g !.cache -g !.mozilla'
