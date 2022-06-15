@@ -9,6 +9,7 @@ alias l="ls -lFh"
 alias la="ls -lAFh"
 alias ls='ls --color'
 alias q=exit
+alias rs='sudo -i /bin/zsh'
 alias s=sudo
 alias sv='sudoedit'
 alias sys='sudo systemctl'
@@ -38,7 +39,7 @@ alias pi="p -S"
 alias pmir='reflector -c IN --sort rate | sudo tee /etc/pacman.d/mirrorlist; \
 			reflector -l 20 --sort rate | sudo tee -a /etc/pacman.d/mirrorlist'
 alias prm="p -Rns"
-alias pu="p -Syu; paru -Sua; nvim --headless +PlugUpdate +CocUpdate +qa"
+alias pu="p -Syu; paru -Sua; nvim --headless +PlugUpgrade +PlugUpdate +CocUpdate +qa"
 
 
 # wifi

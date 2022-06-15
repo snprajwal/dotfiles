@@ -61,6 +61,7 @@ let g:airline#extensions#tabline#left_alt_sep = ' '
 let g:airline#extensions#tabline#right_sep = ''
 let g:airline#extensions#tabline#right_alt_sep = ''
 let g:rooter_change_directory_for_non_project_files = 'home'
+let g:rooter_patterns = ['.git']
 
 " Functions
 function! TrimWhitespace()

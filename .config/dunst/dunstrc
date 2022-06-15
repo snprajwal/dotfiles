@@ -13,12 +13,12 @@ show_age_threshold = 60
 ellipsize = middle
 sticky_history = false
 history_length = 20
-dmenu = /bin/dmenu -p "Dunst"
+dmenu = /bin/dmenu -p "Dunst" -fn "JetBrains Mono-12"
 browser = /bin/firefox
 always_run_script = true
 separator_color = "#d5c4a1"
 corner_radius = 10
-mouse_right_click = context
+mouse_right_click = do_action
 
 [urgency_low]
 frame_color = "#d5c4a1"
