@@ -71,12 +71,10 @@ function! TrimWhitespace()
 endfunction
 " Show hover, else pull up Vim help
 function! s:ShowDocumentation()
-	if (index(['vim','help'], &filetype) >= 0)
-		execute 'h '.expand('<cword>')
-	elseif (coc#rpc#ready())
+	if CocAction('hasProvider', 'hover')
 		call CocActionAsync('doHover')
 	else
-		execute '!' . &keywordprg . " " . expand('<cword>')
+		call feedkeys('K', 'in')
 	endif
 endfunction
 
@@ -103,7 +101,7 @@ nnoremap <Leader>b :ls<CR>:b
 nnoremap <silent> <Leader>t	:split term://zsh<CR>
 nnoremap <silent> <Esc> :noh<CR>
 nnoremap <silent> <Leader>e :Files<CR>
-nnoremap <silent> <Leader>gg :G<CR>
+nnoremap <silent> <Leader>g :G<CR>
 " Better navigation mappings
 nnoremap <M-Left> <C-w>h
 nnoremap <M-Down> <C-w>j
@@ -116,10 +114,13 @@ nnoremap <silent> <C-n> :tabnew<CR>
 nnoremap <silent> <C-Right> :tabnext<CR>
 nnoremap <silent> <C-Left> :tabprevious<CR>
 " Code mappings
-nmap <Leader>gd <Plug>(coc-definition)
-nmap <Leader>gr <Plug>(coc-references)
-nmap <Leader>gi <Plug>(coc-implementation)
-nmap <leader>rn <Plug>(coc-rename)
+nmap gd <Plug>(coc-definition)
+nmap gf <Plug>(coc-implementation)
+nmap gr <Plug>(coc-references)
+nmap rn <Plug>(coc-rename)
+nmap rf <Plug>(coc-refactor)
+nmap [e <Plug>(coc-diagnostic-prev)
+nmap ]e <Plug>(coc-diagnostic-next)
 nmap <leader>do <Plug>(coc-codeaction)
 nnoremap <Leader>fv :CocSearch <C-r>=expand("<cword>")<CR><CR>
 nnoremap <silent> K :call <SID>ShowDocumentation()<CR>
