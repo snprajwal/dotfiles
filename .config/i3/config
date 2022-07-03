@@ -1,109 +1,23 @@
 # i3 config file (v4)
-# General
-set $mod Mod4
 font pango: Noto Sans 11
-floating_modifier $mod
 
-# Locker
-set $Locker i3lock -u -e -t -i ~/.local/share/lockscreen.png && sleep 1
-
-# Keybindings
-bindsym $mod+Return exec --no-startup-id st
-bindsym $mod+d exec --no-startup-id dmenu_run_history -p "Run" -fn "JetBrains Mono-12" -nf '#a89984' -nb '#1d2021' -sb '#a89984' -sf '#1d2021'
-bindsym $mod+p exec --no-startup-id clipmenu -p "Clipboard" -i -fn "JetBrains Mono-12" -nf '#a89984' -nb '#1d2021' -sb '#a89984' -sf '#1d2021'
-bindsym $mod+l exec --no-startup-id $Locker
-bindsym $mod+e exec --no-startup-id st -e lf
-bindsym $mod+w exec --no-startup-id firefox
-bindsym $mod+c exec --no-startup-id st -c nvim -e nvim +Files
-# Screenshots
-bindsym --release Print exec --no-startup-id maim -s | xclip -selection clipboard -t 'image/png'
-bindsym --release Shift+Print exec --no-startup-id maim -s | tee ~/misc/SS_$(date +%d%m%y_%H%M%S).png | xclip -selection clipboard -t 'image/png'
-
-# Workspace variables
-set $ws1 1:
-set $ws2 2:
-set $ws3 3:
-set $ws4 4:
-set $ws5 5
-set $ws6 6
-set $ws7 7
-set $ws8 8
-set $ws9 9
-set $ws10 10
-
-# i3 bindings
-bindsym $mod+q kill
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-bindsym $mod+f fullscreen toggle
-bindsym $mod+space layout toggle
-bindsym $mod+Shift+space floating toggle
-bindsym $mod+z split toggle
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
-bindsym $mod+Shift+minus move scratchpad
-bindsym $mod+minus scratchpad show
-bindsym Mod1+Tab workspace back_and_forth
-bindsym $mod+BackSpace move workspace to output left
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
-
-# Function key controls
-bindsym Shift+F10 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym Shift+F11 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym Shift+F12 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
-
-# Custom modes
-mode "Resize/System" {
-	bindsym e exec --no-startup-id i3-msg exit
-	bindsym s exec --no-startup-id $Locker && systemctl suspend --no-wall, mode "default"
-	bindsym r exec --no-startup-id systemctl reboot --no-wall
-	bindsym p exec --no-startup-id systemctl poweroff -i --no-wall
-
-	bindsym Left resize shrink width 10 px or 10 ppt
-	bindsym Down resize grow height 10 px or 10 ppt
-	bindsym Up resize shrink height 10 px or 10 ppt
-	bindsym Right resize grow width 10 px or 10 ppt
-
-	bindsym Escape mode "default"
-	bindsym $mod+x mode "default"
-}
-bindsym $mod+x mode "Resize/System"
-
-# Window rules
-for_window [window_role="pop-up"] floating enable
-for_window [class="mpv"] floating enable
-for_window [class="firefox"] layout tabbed
-for_window [class="nvim"] layout tabbed
-assign [class="firefox"] $ws1
-assign [class="st-256color" title="tmux|st"] $ws2
-assign [class="nvim"] $ws3
+# Variables
+set $MOD Mod4
+set $RUN exec --no-startup-id
+set $LOCKER i3lock -u -e -t -i ~/.local/share/lockscreen.png && sleep 1
+set $WS1 1:
+set $WS2 2:
+set $WS3 3:
+set $WS4 4
+set $WS5 5
+set $WS6 6
+set $WS7 7
+set $WS8 8
+set $WS9 9
+set $WS10 10:
 
 # i3 properties
+floating_modifier $MOD
 default_border pixel 2
 default_floating_border pixel 2
 # class                 border  bground text    indicator child_border
@@ -131,16 +45,112 @@ bar {
 		urgent_workspace   #fb4934 #fb4934 #ebdbb2
 		}
 }
+# Workspace rules
+workspace_auto_back_and_forth yes
+workspace $WS2 output eDP-1
+workspace $WS10 output eDP-1
+# Window rules
+for_window [window_role="pop-up"] floating enable
+for_window [class="mpv"] floating enable
+for_window [class="firefox"] layout tabbed
+for_window [class="nvim"] layout tabbed
+for_window [title="WhatsApp — Mozilla Firefox"] move to workspace $WS10
+for_window [workspace=$WS10] fullscreen enable
+assign [class="firefox"] $WS1
+assign [class="tmux"] $WS2
+assign [class="nvim"] $WS3
 
-# Startup
-exec --no-startup-id systemctl --user import-environment DISPLAY XAUTHORITY
-exec --no-startup-id dbus-update-activation-environment DISPLAY XAUTHORITY
+# Set session variables for X11
+$RUN systemctl --user import-environment DISPLAY XAUTHORITY
+$RUN dbus-update-activation-environment DISPLAY XAUTHORITY
+# Wallpaper
 exec_always --no-startup-id feh --no-fehbg --bg-fill --randomize ~/.local/share/wallpaper/
-exec --no-startup-id picom
-exec --no-startup-id udiskie -aNsF
-exec --no-startup-id redshift -l 12.88:77.6
-exec --no-startup-id volctl
-exec --no-startup-id xfce4-power-manager
-exec --no-startup-id blueman-applet
-exec --no-startup-id firefox
-exec --no-startup-id st -e tmux
+# Autostart
+$RUN picom
+$RUN udiskie -aNsF
+$RUN redshift -l 12.88:77.6
+$RUN volctl
+$RUN xfce4-power-manager
+$RUN blueman-applet
+$RUN firefox
+$RUN firefox --new-window "web.whatsapp.com"
+$RUN st -c tmux -e tmux
+
+# Keybindings
+bindsym $MOD+l $RUN $LOCKER
+bindsym $MOD+Return $RUN st
+bindsym $MOD+c $RUN st -c nvim -e nvim +Files
+bindsym $MOD+e $RUN st -e lf
+bindsym $MOD+d $RUN dmenu_run_history -p "Run" -fn "JetBrains Mono-12" \
+			-nf '#a89984' -nb '#1d2021' -sb '#a89984' -sf '#1d2021'
+bindsym $MOD+p $RUN clipmenu -p "Clipboard" -i -fn "JetBrains Mono-12" \
+			-nf '#a89984' -nb '#1d2021' -sb '#a89984' -sf '#1d2021'
+# Screenshots
+bindsym --release Print $RUN maim -s | \
+			xclip -selection clipboard -t 'image/png'
+bindsym --release Shift+Print $RUN maim -s | \
+			tee ~/misc/SS_$(date +%d%m%y_%H%M%S).png | \
+			xclip -selection clipboard -t 'image/png'
+# Controls
+bindsym $MOD+q kill
+bindsym $MOD+Left focus left
+bindsym $MOD+Down focus down
+bindsym $MOD+Up focus up
+bindsym $MOD+Right focus right
+bindsym $MOD+Shift+Left move left
+bindsym $MOD+Shift+Down move down
+bindsym $MOD+Shift+Up move up
+bindsym $MOD+Shift+Right move right
+bindsym $MOD+f fullscreen toggle
+bindsym $MOD+Shift+f fullscreen toggle global
+bindsym $MOD+space layout toggle
+bindsym $MOD+Shift+space floating toggle
+bindsym $MOD+z split toggle
+bindsym $MOD+1 workspace $WS1
+bindsym $MOD+2 workspace $WS2
+bindsym $MOD+3 workspace $WS3
+bindsym $MOD+4 workspace $WS4
+bindsym $MOD+5 workspace $WS5
+bindsym $MOD+6 workspace $WS6
+bindsym $MOD+7 workspace $WS7
+bindsym $MOD+8 workspace $WS8
+bindsym $MOD+9 workspace $WS9
+bindsym $MOD+0 workspace $WS10
+# Use Alt+Tab to flip to chat
+bindsym Mod1+Tab workspace $WS10
+bindsym $MOD+Shift+1 move container to workspace $WS1
+bindsym $MOD+Shift+2 move container to workspace $WS2
+bindsym $MOD+Shift+3 move container to workspace $WS3
+bindsym $MOD+Shift+4 move container to workspace $WS4
+bindsym $MOD+Shift+5 move container to workspace $WS5
+bindsym $MOD+Shift+6 move container to workspace $WS6
+bindsym $MOD+Shift+7 move container to workspace $WS7
+bindsym $MOD+Shift+8 move container to workspace $WS8
+bindsym $MOD+Shift+9 move container to workspace $WS9
+bindsym $MOD+Shift+0 move container to workspace $WS10
+bindsym $MOD+Shift+minus move scratchpad
+bindsym $MOD+minus scratchpad show
+bindsym $MOD+BackSpace move workspace to output left
+bindsym $MOD+Shift+c reload
+bindsym $MOD+Shift+r restart
+# Volume handlers
+bindsym Shift+F10 $RUN pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym Shift+F11 $RUN pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym Shift+F12 $RUN pactl set-sink-volume @DEFAULT_SINK@ +5%
+
+# Custom mode for power options
+mode "Power/Resize" {
+	bindsym s $RUN $LOCKER && systemctl suspend --no-wall, mode "default"
+	bindsym e $RUN i3-msg exit
+	bindsym r $RUN systemctl reboot --no-wall
+	bindsym p $RUN systemctl poweroff -i --no-wall
+
+	bindsym Left resize shrink width 10 px or 10 ppt
+	bindsym Down resize grow height 10 px or 10 ppt
+	bindsym Up resize shrink height 10 px or 10 ppt
+	bindsym Right resize grow width 10 px or 10 ppt
+
+	bindsym Escape mode "default"
+	bindsym $MOD+x mode "default"
+}
+bindsym $MOD+x mode "Power/Resize"

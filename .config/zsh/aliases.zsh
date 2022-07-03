@@ -1,4 +1,4 @@
-# general aliases
+# General aliases
 alias -g md='mkdir -p'
 alias -g rd='rm -r'
 alias c=clear
@@ -8,6 +8,7 @@ alias g=git
 alias l="ls -lFh"
 alias la="ls -lAFh"
 alias ls='ls --color'
+alias make="make -j $(nproc)"
 alias q=exit
 alias rs='sudo -i /bin/zsh'
 alias s=sudo
@@ -17,7 +18,7 @@ alias t=tmux
 alias v=nvim
 alias yt="youtube-dl -x -o '~/music/concerts/%(title)s.%(ext)s'"
 
-# configs
+# Configs
 alias cfa='nvim ~/.config/zsh/aliases.zsh'
 alias cfi='nvim ~/.config/i3/config'
 alias cft='nvim ~/.tmux.conf'
@@ -26,13 +27,13 @@ alias cfz='nvim ~/.zshrc'
 alias dot='git --git-dir=$HOME/.local/dotfiles/ --work-tree=$HOME'
 alias per='git --git-dir=$HOME/.local/personal/ --work-tree=$HOME'
 
-# pipes
+# Pipes
 alias -g G='| rg'
 alias -g H='| head'
 alias -g L='| less -R'
 alias -g T='| tail'
 
-# packages
+# Packages
 alias p='sudo pacman'
 alias pd='sudo -E pacdiff'
 alias pi="p -S"
@@ -42,7 +43,7 @@ alias prm="p -Rns"
 alias pu="p -Syu; paru -Sua; nvim --headless +PlugUpgrade +PlugUpdate +CocUpdate +qa"
 
 
-# wifi
+# Wifi
 wifi() {
 	local HOME='Oromis'
 	local HOTSPOT='Oromis - 4'
