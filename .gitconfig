@@ -1,0 +1,21 @@
+[user]
+	email = prajwalnadig21@gmail.com
+	name = Prajwal S N
+	signingkey = D0FECEE245BC2695
+[url "git@github.com:"]
+	insteadOf = "gh:"
+[init]
+	defaultBranch = main
+[commit]
+	gpgsign = true
+[alias]
+	cl = clone
+	pl = pull
+	ps = push
+	st = status
+	cm = commit -s
+	br = branch
+	co = checkout
+	d = diff
+	a = add
+	l = log

@@ -8,7 +8,7 @@ set $LOCKER i3lock -u -e -t -i ~/.local/share/lockscreen.png && sleep 1
 set $WS1 1:
 set $WS2 2:
 set $WS3 3:
-set $WS4 4
+set $WS4 4:
 set $WS5 5
 set $WS6 6
 set $WS7 7
@@ -51,6 +51,8 @@ workspace $WS2 output eDP-1
 workspace $WS10 output eDP-1
 # Window rules
 for_window [window_role="pop-up"] floating enable
+for_window [window_role="dialog"] floating enable
+for_window [window_role="menu"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="firefox"] layout tabbed
 for_window [class="nvim"] layout tabbed
@@ -81,10 +83,8 @@ bindsym $MOD+l $RUN $LOCKER
 bindsym $MOD+Return $RUN st
 bindsym $MOD+c $RUN st -c nvim -e nvim +Files
 bindsym $MOD+e $RUN st -e lf
-bindsym $MOD+d $RUN dmenu_run_history -p "Run" -fn "JetBrains Mono-12" \
-			-nf '#a89984' -nb '#1d2021' -sb '#a89984' -sf '#1d2021'
-bindsym $MOD+p $RUN clipmenu -p "Clipboard" -i -fn "JetBrains Mono-12" \
-			-nf '#a89984' -nb '#1d2021' -sb '#a89984' -sf '#1d2021'
+bindsym $MOD+d $RUN rofi -show run -display-run "Run" -theme "gruvbox-dark-hard" -font "JetBrains Mono 12"
+bindsym $MOD+p $RUN CM_LAUNCHER=rofi clipmenu -p "Clipboard" -theme "gruvbox-dark-hard" -font "JetBrains Mono 12"
 # Screenshots
 bindsym --release Print $RUN maim -s | \
 			xclip -selection clipboard -t 'image/png'
