@@ -34,6 +34,7 @@ bar {
 	status_command i3status
 	separator_symbol 
 	strip_workspace_numbers yes
+	tray_output primary
 	colors {
 		background #1d2021bb
 		statusline #ebdbb2

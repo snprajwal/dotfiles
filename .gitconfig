@@ -19,3 +19,5 @@
 	d = diff
 	a = add
 	l = log
+[push]
+	autoSetupRemote = true

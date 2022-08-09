@@ -69,7 +69,15 @@ function! TrimWhitespace()
 	keeppatterns %s/\s\+$//e
 	call winrestview(l:save)
 endfunction
-" Show hover, else pull up Vim help
+"" Respect .gitignore in a git repo
+function! ListFiles()
+	echo FindRootDirectory()
+	if empty(FindRootDirectory())
+		execute 'Files'
+	else
+		execute 'GFiles'
+	endif
+endfunction
 function! s:ShowDocumentation()
 	if CocAction('hasProvider', 'hover')
 		call CocActionAsync('doHover')
@@ -79,6 +87,7 @@ function! s:ShowDocumentation()
 endfunction
 
 " Autocommands
+"" Transparency
 autocmd VimEnter * hi Normal guibg=none ctermbg=none
 autocmd VimEnter * hi SignColumn guibg=none ctermbg=none
 autocmd FileType text let b:coc_enabled = 0
@@ -100,9 +109,9 @@ nnoremap <Leader><Space> i<Space><Esc>
 nnoremap <Leader>b :ls<CR>:b
 nnoremap <silent> <Leader>t	:split term://zsh<CR>
 nnoremap <silent> <Esc> :noh<CR>
-nnoremap <silent> <Leader>e :Files<CR>
+nnoremap <silent> <Leader>e :call ListFiles()<CR>
 nnoremap <silent> <Leader>g :G<CR>
-" Better navigation mappings
+"" Better navigation mappings
 nnoremap <M-Left> <C-w>h
 nnoremap <M-Down> <C-w>j
 nnoremap <M-Up> <C-w>k
@@ -113,7 +122,7 @@ nnoremap <silent> <S-Tab> :bprevious<CR>
 nnoremap <silent> <C-n> :tabnew<CR>
 nnoremap <silent> <C-Right> :tabnext<CR>
 nnoremap <silent> <C-Left> :tabprevious<CR>
-" Code mappings
+"" Code mappings
 nmap gd <Plug>(coc-definition)
 nmap gf <Plug>(coc-implementation)
 nmap gr <Plug>(coc-references)
@@ -124,7 +133,7 @@ nmap ]e <Plug>(coc-diagnostic-next)
 nmap <leader>do <Plug>(coc-codeaction)
 nnoremap <Leader>fv :CocSearch <C-r>=expand("<cword>")<CR><CR>
 nnoremap <silent> K :call <SID>ShowDocumentation()<CR>
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <silent> <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
+inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
+inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
+inoremap <silent> <expr> <CR> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 nnoremap <silent> <F5> :split term://zsh -c 'g++ % -o ~/dev/cp.out && ~/dev/cp.out'<CR>

@@ -8,7 +8,6 @@ alias g=git
 alias l="ls -lFh"
 alias la="ls -lAFh"
 alias ls='ls --color'
-alias make="make -j $(nproc)"
 alias q=exit
 alias rs='sudo -i /bin/zsh'
 alias s=sudo
@@ -25,7 +24,6 @@ alias cft='nvim ~/.tmux.conf'
 alias cfv='nvim ~/.config/nvim/init.vim'
 alias cfz='nvim ~/.zshrc'
 alias dot='git --git-dir=$HOME/.local/dotfiles/ --work-tree=$HOME'
-alias per='git --git-dir=$HOME/.local/personal/ --work-tree=$HOME'
 
 # Pipes
 alias -g G='| rg'
