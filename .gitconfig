@@ -9,15 +9,20 @@
 [commit]
 	gpgsign = true
 [alias]
+	a = add
+	b = "!f() { git switch $1; }; f"
+	bn = "!f() { git switch -c $1; }; f"
+	br = branch
 	cl = clone
+	cm = commit -s
+	cma = commit --amend
+	cman = commit --amend --no-edit
+	d = diff
+	l = log
+	lo = log --oneline
 	pl = pull
 	ps = push
-	st = status
-	cm = commit -s
-	br = branch
-	co = checkout
-	d = diff
-	a = add
-	l = log
+	s = status
+	up = !git pull upstream main && git push
 [push]
 	autoSetupRemote = true

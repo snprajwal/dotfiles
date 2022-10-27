@@ -63,9 +63,6 @@ assign [class="firefox"] $WS1
 assign [class="tmux"] $WS2
 assign [class="nvim"] $WS3
 
-# Set session variables for X11
-$RUN systemctl --user import-environment DISPLAY XAUTHORITY
-$RUN dbus-update-activation-environment DISPLAY XAUTHORITY
 # Wallpaper
 exec_always --no-startup-id feh --no-fehbg --bg-fill --randomize ~/.local/share/wallpaper/
 # Autostart
@@ -85,6 +82,7 @@ bindsym $MOD+Return $RUN st
 bindsym $MOD+c $RUN st -c nvim -e nvim +Files
 bindsym $MOD+e $RUN st -e lf
 bindsym $MOD+d $RUN rofi -show run -display-run "Run" -theme "gruvbox-dark-hard" -font "JetBrains Mono 12"
+bindsym $MOD+i $RUN rofi -modi emoji -show emoji -theme "gruvbox-dark-hard" -font "JetBrains Mono 12"
 bindsym $MOD+p $RUN CM_LAUNCHER=rofi clipmenu -p "Clipboard" -theme "gruvbox-dark-hard" -font "JetBrains Mono 12"
 # Screenshots
 bindsym --release Print $RUN maim -s | \

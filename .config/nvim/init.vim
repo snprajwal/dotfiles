@@ -85,6 +85,11 @@ function! s:ShowDocumentation()
 		call feedkeys('K', 'in')
 	endif
 endfunction
+"" Used by coc.nvim for trigger completion
+function! CheckBackspace() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 " Autocommands
 "" Transparency
@@ -133,7 +138,7 @@ nmap ]e <Plug>(coc-diagnostic-next)
 nmap <leader>do <Plug>(coc-codeaction)
 nnoremap <Leader>fv :CocSearch <C-r>=expand("<cword>")<CR><CR>
 nnoremap <silent> K :call <SID>ShowDocumentation()<CR>
-inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
-inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
+inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : CheckBackspace() ? "\<Tab>" : coc#refresh()
+inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : CheckBackspace() ? "\<S-Tab>" : coc#refresh()
 inoremap <silent> <expr> <CR> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 nnoremap <silent> <F5> :split term://zsh -c 'g++ % -o ~/dev/cp.out && ~/dev/cp.out'<CR>

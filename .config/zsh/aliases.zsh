@@ -3,11 +3,12 @@ alias -g md='mkdir -p'
 alias -g rd='rm -r'
 alias c=clear
 alias df='df -h'
-alias ds='du -h -d 1'
+alias ds='du -h -d 1 | sort -hr'
 alias g=git
 alias l="ls -lFh"
 alias la="ls -lAFh"
 alias ls='ls --color'
+alias nd='nix develop -c zsh'
 alias q=exit
 alias rs='sudo -i /bin/zsh'
 alias s=sudo
@@ -42,16 +43,14 @@ alias pu="p -Syu; paru -Sua; nvim --headless +PlugUpgrade +PlugUpdate +CocUpdate
 
 
 # Wifi
+alias wr='sudo systemctl restart iwd'
 wifi() {
 	local HOME='Oromis'
-	local HOTSPOT='Oromis - 4'
+	local HOTSPOT='Naegling'
 	case "$1" in
 		"")
 			iwctl station wlan0 scan
 			iwctl station wlan0 get-networks
-			;;
-		reset)
-			sudo systemctl restart iwd.service
 			;;
 		home)
 			iwctl station wlan0 connect $HOME
