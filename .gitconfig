@@ -10,9 +10,13 @@
 	gpgsign = true
 [alias]
 	a = add
-	b = "!f() { git switch $1; }; f"
-	bn = "!f() { git switch -c $1; }; f"
-	br = branch
+	b = "!git switch \"$1\" || (\
+		read -e -n 1 -p \"Create new branch $1? (Y/n) \" CHOICE; \
+		if [[ $CHOICE != \"n\" ]]; then \
+		git switch -c \"$1\"; \
+		fi) #"
+	bd = branch -D
+	br = branch -a
 	cl = clone
 	cm = commit -s
 	cma = commit --amend
@@ -23,6 +27,6 @@
 	pl = pull
 	ps = push
 	s = status
-	up = !git pull upstream main && git push
+	up = "!BRANCH=\"${1:-\"main\"}\"; git pull upstream $BRANCH && git push #"
 [push]
 	autoSetupRemote = true

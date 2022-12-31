@@ -9,6 +9,7 @@ alias l="ls -lFh"
 alias la="ls -lAFh"
 alias ls='ls --color'
 alias nd='nix develop -c zsh'
+alias pake="make -j $(nproc)"
 alias q=exit
 alias rs='sudo -i /bin/zsh'
 alias s=sudo

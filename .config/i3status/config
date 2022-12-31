@@ -38,7 +38,7 @@ memory {
 
 wireless _first_ {
 	format_up = "<b>%quality @ %essid</b>"
-	format_down = "<b>Down</b>"
+	format_down = " <b>Down</b>"
 }
 
 battery all {

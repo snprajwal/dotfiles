@@ -95,7 +95,7 @@ endfunction
 "" Transparency
 autocmd VimEnter * hi Normal guibg=none ctermbg=none
 autocmd VimEnter * hi SignColumn guibg=none ctermbg=none
-autocmd FileType text let b:coc_enabled = 0
+autocmd FileType text,markdown let b:coc_enabled = 0
 autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
 augroup clean
 	autocmd!

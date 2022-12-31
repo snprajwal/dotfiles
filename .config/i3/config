@@ -72,8 +72,6 @@ $RUN redshift -l 12.88:77.6
 $RUN volctl
 $RUN xfce4-power-manager
 $RUN blueman-applet
-$RUN firefox
-$RUN firefox --new-window "web.whatsapp.com"
 $RUN st -c tmux -e tmux
 
 # Keybindings

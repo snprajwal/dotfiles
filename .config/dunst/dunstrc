@@ -13,6 +13,7 @@ show_age_threshold = 60
 ellipsize = middle
 sticky_history = false
 history_length = 20
+icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/:/usr/share/icons/Adwaita/16x16/legacy/
 dmenu = /bin/rofi -dmenu -p "Action" -theme "gruvbox-dark-hard" -font "JetBrains Mono 12"
 browser = /bin/firefox
 always_run_script = true
