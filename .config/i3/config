@@ -70,12 +70,12 @@ $RUN picom
 $RUN udiskie -aNsF
 $RUN redshift -l 12.88:77.6
 $RUN volctl
-$RUN xfce4-power-manager
+$RUN powerkit
 $RUN blueman-applet
 $RUN st -c tmux -e tmux
 
 # Keybindings
-bindsym $MOD+l $RUN $LOCKER
+bindsym $MOD+Control+l $RUN $LOCKER
 bindsym $MOD+Return $RUN st
 bindsym $MOD+c $RUN st -c nvim -e nvim +Files
 bindsym $MOD+e $RUN st -e lf
@@ -90,6 +90,16 @@ bindsym --release Shift+Print $RUN maim -s | \
 			xclip -selection clipboard -t 'image/png'
 # Controls
 bindsym $MOD+q kill
+
+bindsym $MOD+h focus left
+bindsym $MOD+j focus down
+bindsym $MOD+k focus up
+bindsym $MOD+l focus right
+bindsym $MOD+Shift+h move left
+bindsym $MOD+Shift+j move down
+bindsym $MOD+Shift+k move up
+bindsym $MOD+Shift+l move right
+# Same things, but with arrow keys
 bindsym $MOD+Left focus left
 bindsym $MOD+Down focus down
 bindsym $MOD+Up focus up
@@ -98,11 +108,13 @@ bindsym $MOD+Shift+Left move left
 bindsym $MOD+Shift+Down move down
 bindsym $MOD+Shift+Up move up
 bindsym $MOD+Shift+Right move right
+
 bindsym $MOD+f fullscreen toggle
 bindsym $MOD+Shift+f fullscreen toggle global
 bindsym $MOD+space layout toggle
 bindsym $MOD+Shift+space floating toggle
 bindsym $MOD+z split toggle
+
 bindsym $MOD+1 workspace $WS1
 bindsym $MOD+2 workspace $WS2
 bindsym $MOD+3 workspace $WS3
@@ -115,6 +127,8 @@ bindsym $MOD+9 workspace $WS9
 bindsym $MOD+0 workspace $WS10
 # Use Alt+Tab to flip to chat
 bindsym Mod1+Tab workspace $WS10
+bindsym $MOD+BackSpace move workspace to output left
+
 bindsym $MOD+Shift+1 move container to workspace $WS1
 bindsym $MOD+Shift+2 move container to workspace $WS2
 bindsym $MOD+Shift+3 move container to workspace $WS3
@@ -125,15 +139,19 @@ bindsym $MOD+Shift+7 move container to workspace $WS7
 bindsym $MOD+Shift+8 move container to workspace $WS8
 bindsym $MOD+Shift+9 move container to workspace $WS9
 bindsym $MOD+Shift+0 move container to workspace $WS10
+
 bindsym $MOD+Shift+minus move scratchpad
 bindsym $MOD+minus scratchpad show
-bindsym $MOD+BackSpace move workspace to output left
+
 bindsym $MOD+Shift+c reload
 bindsym $MOD+Shift+r restart
-# Volume handlers
-bindsym Shift+F10 $RUN pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym Shift+F11 $RUN pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym Shift+F12 $RUN pactl set-sink-volume @DEFAULT_SINK@ +5%
+# Audio handlers
+bindsym XF86AudioMute $RUN pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioLowerVolume $RUN pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioRaiseVolume $RUN pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioPlay $RUN playerctl play-pause
+bindsym XF86AudioPrev $RUN playerctl previous
+bindsym XF86AudioNext $RUN playerctl next
 
 # Custom mode for power options
 mode "Power/Resize" {

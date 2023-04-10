@@ -106,8 +106,6 @@ augroup end
 let mapleader = "\<Space>"
 cabbrev vb vert sb
 tnoremap <Esc> <C-\><C-n>
-nnoremap ; :
-nnoremap : ;
 nnoremap Y y$
 nnoremap U <C-r>
 nnoremap <Leader><Space> i<Space><Esc>
@@ -117,10 +115,14 @@ nnoremap <silent> <Esc> :noh<CR>
 nnoremap <silent> <Leader>e :call ListFiles()<CR>
 nnoremap <silent> <Leader>g :G<CR>
 "" Better navigation mappings
-nnoremap <M-Left> <C-w>h
-nnoremap <M-Down> <C-w>j
-nnoremap <M-Up> <C-w>k
-nnoremap <M-Right> <C-w>l
+nnoremap j gj
+nnoremap gj j
+nnoremap k gk
+nnoremap gk k
+nnoremap <M-h> <C-w>h
+nnoremap <M-j> <C-w>j
+nnoremap <M-k> <C-w>k
+nnoremap <M-l> <C-w>l
 nnoremap <M-x> <C-w>x
 nnoremap <silent> <Tab> :bnext<CR>
 nnoremap <silent> <S-Tab> :bprevious<CR>

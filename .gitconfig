@@ -10,14 +10,18 @@
 	gpgsign = true
 [alias]
 	a = add
-	b = "!git switch \"$1\" || (\
-		read -e -n 1 -p \"Create new branch $1? (Y/n) \" CHOICE; \
-		if [[ $CHOICE != \"n\" ]]; then \
-		git switch -c \"$1\"; \
-		fi) #"
+	b = "!SUCCESS=$(git switch \"$1\" 2>&1); \
+		if [[ $SUCCESS == *\"invalid reference\"* ]]; then \
+			read -e -n 1 -p \"Create new branch $1? (Y/n) \" CHOICE; \
+			if [[ $CHOICE != \"n\" ]]; then \
+				git switch -c \"$1\"; \
+			fi \
+		fi #"
 	bd = branch -D
+	bdr = push -d origin
 	br = branch -a
 	cl = clone
+	fork = "!git clone \"$1\" && git remote add upstream \"$2\" #"
 	cm = commit -s
 	cma = commit --amend
 	cman = commit --amend --no-edit
@@ -30,3 +34,5 @@
 	up = "!BRANCH=\"${1:-\"main\"}\"; git pull upstream $BRANCH && git push #"
 [push]
 	autoSetupRemote = true
+[core]
+	editor = nvim

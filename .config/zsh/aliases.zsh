@@ -40,7 +40,7 @@ alias pi="p -S"
 alias pmir='reflector -c IN --sort rate | sudo tee /etc/pacman.d/mirrorlist; \
 			reflector -l 20 --sort rate | sudo tee -a /etc/pacman.d/mirrorlist'
 alias prm="p -Rns"
-alias pu="p -Syu; paru -Sua; nvim --headless +PlugUpgrade +PlugUpdate +CocUpdate +qa"
+alias pu="p -Syu; paru -Sua; nvim --headless +PlugUpgrade +PlugUpdate +CocUpdateSync +qa"
 
 
 # Wifi

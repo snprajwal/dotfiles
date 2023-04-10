@@ -1,25 +1,4 @@
 {
-	"coc.preferences.formatOnSaveFiletypes": [
-		"*"
-	],
-	"languageserver": {
-		"haskell": {
-			"command": "haskell-language-server-wrapper",
-			"args": [
-				"--lsp"
-			],
-			"rootPatterns": [
-				"*.cabal",
-				"stack.yaml",
-				"cabal.project",
-				"package.yaml",
-				"hie.yaml"
-			],
-			"filetypes": [
-				"haskell",
-				"lhaskell"
-			]
-		}
-	},
+	"coc.preferences.formatOnSave": true,
 	"rust-analyzer.server.path": "/usr/bin/rust-analyzer"
 }
