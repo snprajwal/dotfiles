@@ -109,7 +109,7 @@ tnoremap <Esc> <C-\><C-n>
 nnoremap Y y$
 nnoremap U <C-r>
 nnoremap <Leader><Space> i<Space><Esc>
-nnoremap <Leader>b :ls<CR>:b
+nnoremap <Leader>b :Buffers<CR>
 nnoremap <silent> <Leader>t	:split term://zsh<CR>
 nnoremap <silent> <Esc> :noh<CR>
 nnoremap <silent> <Leader>e :call ListFiles()<CR>

@@ -4,18 +4,21 @@
 	signingkey = D0FECEE245BC2695
 [url "git@github.com:"]
 	insteadOf = "gh:"
+	insteadOf = "https://github.com/"
 [init]
 	defaultBranch = main
 [commit]
 	gpgsign = true
 [alias]
 	a = add
-	b = "!SUCCESS=$(git switch \"$1\" 2>&1); \
-		if [[ $SUCCESS == *\"invalid reference\"* ]]; then \
-			read -e -n 1 -p \"Create new branch $1? (Y/n) \" CHOICE; \
+	b = "!SUCCESS=$(git switch $1 2>&1); \
+		if [[ $SUCCESS == *\"invalid reference\"* && ! -z $1 ]]; then \
+			read -e -n 1 -p \"Create new branch $1 [Y/n]? \" CHOICE; \
 			if [[ $CHOICE != \"n\" ]]; then \
-				git switch -c \"$1\"; \
+				git switch -c $1; \
 			fi \
+		else \
+			echo $SUCCESS; \
 		fi #"
 	bd = branch -D
 	bdr = push -d origin
@@ -36,3 +39,5 @@
 	autoSetupRemote = true
 [core]
 	editor = nvim
+[pull]
+	rebase = true
