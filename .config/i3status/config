@@ -20,20 +20,21 @@ general {
 order += "cpu_usage"
 order += "memory"
 order += "wireless _first_"
+order += "volume master"
 order += "battery all"
 order += "tztime date"
 order += "tztime time"
 
 cpu_usage {
-	format = "<span foreground='#8ec07c'><b> %usage</b></span>"
+	format = "<span foreground='#8ec07c'><b> %usage</b></span>"
 	degraded_threshold = 50
 	max_threshold = 80
 }
 
 memory {
-	format = "<span foreground='#ebdbb2'><b> %percentage_used</b></span>"
-	threshold_degraded = 50
-	threshold_critical = 80
+	format = "<span foreground='#ebdbb2'><b> %percentage_used</b></span>"
+	threshold_degraded = 75%
+	threshold_critical = 90%
 }
 
 wireless _first_ {
@@ -41,15 +42,22 @@ wireless _first_ {
 	format_down = " <b>Down</b>"
 }
 
+volume master {
+        format = "<span foreground='#d3869b'> <b>%volume</b></span>"
+        format_muted = "<span foreground='#d3869b'> <b>(%volume)</b></span>"
+}
+
 battery all {
 	format = "<span foreground='#83a598'>%status<b> %percentage</b></span>"
+	last_full_capacity = true
 	integer_battery_capacity = true
 	low_threshold = 20
 	threshold_type = "percentage"
 	status_chr =
 	status_bat =
 	status_full =
-	status_unk=
+	status_idle =
+	status_unk =
 }
 
 tztime date {

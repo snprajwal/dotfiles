@@ -1,7 +1,7 @@
 [user]
 	email = prajwalnadig21@gmail.com
 	name = Prajwal S N
-	signingkey = D0FECEE245BC2695
+	signingkey = 60701A603988FAC2
 [url "git@github.com:"]
 	insteadOf = "gh:"
 	insteadOf = "https://github.com/"
@@ -20,11 +20,22 @@
 		else \
 			echo $SUCCESS; \
 		fi #"
-	bd = branch -D
-	bdr = push -d origin
+	bd = "!if [[ $(git branch -l $1) ]]; then \
+			read -e -n 1 -p \"Delete branch $1 [Y/n]? \" CHOICE; \
+		if [[ $CHOICE = \"y\" ]]; then \
+				git branch -D $1; \
+			fi; \
+			read -e -n 1 -p \"Delete remote branch $1 [Y/n]? \" CHOICE; \
+			if [[ $CHOICE = \"y\" ]]; then \
+				git push -d origin $1; \
+			fi; \
+		else \
+			echo \"Branch $1 does not exist\"; \
+		fi #"
+	bl = blame
 	br = branch -a
 	cl = clone
-	fork = "!git clone \"$1\" && git remote add upstream \"$2\" #"
+	fork = "!git clone $1 && git remote add upstream $2 #"
 	cm = commit -s
 	cma = commit --amend
 	cman = commit --amend --no-edit
@@ -33,11 +44,29 @@
 	lo = log --oneline
 	pl = pull
 	ps = push
+	pf = push --force-with-lease
+	rb = "!git rebase -i HEAD~$1 #"
+	rbm = "!BRANCH=$(git rev-parse --abbrev-ref origin/HEAD | cut -d/ -f2); \
+		git switch $BRANCH && \
+		git pull && \
+		git switch - && \
+		git rebase $BRANCH #"
+	rba = rebase --abort
+	rbc = rebase --continue
+	rs = reset --soft HEAD~1
 	s = status
-	up = "!BRANCH=\"${1:-\"main\"}\"; git pull upstream $BRANCH && git push #"
+	st = stash
+	sp = stash pop
+	up = "!BRANCH=$(git rev-parse --abbrev-ref origin/HEAD | cut -d/ -f2); \
+		git switch $BRANCH && \
+		git pull upstream $BRANCH && \
+		git push && \
+		git switch - #"
 [push]
 	autoSetupRemote = true
-[core]
-	editor = nvim
 [pull]
 	rebase = true
+[core]
+	editor = nvim
+[http]
+	cookiefile = /home/snprajwal/.gitcookies

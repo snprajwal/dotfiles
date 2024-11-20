@@ -33,22 +33,12 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.config/zsh/history.zsh
 
-# Variables
-export GPG_TTY=$TTY
-export PATH=$PATH:$HOME/.local/bin:$HOME/.cargo/bin:$(go env GOPATH)/bin
-export EDITOR=/usr/bin/nvim
-export VISUAL=/usr/bin/nvim
-export DIFFPROG="nvim -d"
-export ZSH=$HOME/.config/zsh
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --color fg:#ebdbb2,bg:#282828,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'
-export FZF_DEFAULT_COMMAND='rg --files -g !.cache -g !.mozilla'
-export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
-
 # Plugins, themes and lfcd
 source $ZSH/aliases.zsh
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 source $HOME/.config/lf/lfcd.sh
+source /home/snprajwal/.opam/opam-init/init.zsh
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

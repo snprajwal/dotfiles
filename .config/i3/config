@@ -4,7 +4,7 @@ font pango: Noto Sans 11
 # Variables
 set $MOD Mod4
 set $RUN exec --no-startup-id
-set $LOCKER i3lock -u -e -t -i ~/.local/share/lockscreen.png && sleep 1
+set $LOCKER i3lock -u -e -f -t -i ~/.local/share/lockscreen.png && sleep 1
 set $WS1 1:
 set $WS2 2:
 set $WS3 3:
@@ -14,7 +14,7 @@ set $WS6 6
 set $WS7 7
 set $WS8 8
 set $WS9 9
-set $WS10 10:
+set $WS10 10:
 
 # i3 properties
 floating_modifier $MOD
@@ -54,30 +54,36 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="dialog"] floating enable
 for_window [window_role="menu"] floating enable
 for_window [class="mpv"] floating enable
-for_window [class="firefox"] layout tabbed
-for_window [class="nvim"] layout tabbed
+for_window [workspace=$WS1] layout tabbed
+for_window [workspace=$WS3] layout tabbed
+for_window [workspace=$WS4] layout tabbed
+for_window [workspace=$WS10] layout tabbed
 for_window [title="WhatsApp — Mozilla Firefox"] move to workspace $WS10
-for_window [workspace=$WS10] fullscreen enable
-assign [class="firefox"] $WS1
-assign [class="tmux"] $WS2
+assign [class="firefox" window_role="browser"] $WS1
 assign [class="nvim"] $WS3
+assign [class="Signal"] $WS10
 
 # Wallpaper
 exec_always --no-startup-id feh --no-fehbg --bg-fill --randomize ~/.local/share/wallpaper/
 # Autostart
 $RUN picom
 $RUN udiskie -aNsF
-$RUN redshift -l 12.88:77.6
-$RUN volctl
+$RUN /usr/lib/geoclue-2.0/demos/agent
+$RUN redshift
 $RUN powerkit
 $RUN blueman-applet
-$RUN st -c tmux -e tmux
+$RUN warpd
+$RUN st
+$RUN signal-desktop
+$RUN firefox
+$RUN nm-applet
 
 # Keybindings
 bindsym $MOD+Control+l $RUN $LOCKER
 bindsym $MOD+Return $RUN st
+bindsym $MOD+Shift+w $RUN firefox -P Bloop
 bindsym $MOD+c $RUN st -c nvim -e nvim +Files
-bindsym $MOD+e $RUN st -e lf
+bindsym $MOD+e $RUN st -c lf -e lf
 bindsym $MOD+d $RUN rofi -show run -display-run "Run" -theme "gruvbox-dark-hard" -font "JetBrains Mono 12"
 bindsym $MOD+i $RUN rofi -modi emoji -show emoji -theme "gruvbox-dark-hard" -font "JetBrains Mono 12"
 bindsym $MOD+p $RUN CM_LAUNCHER=rofi clipmenu -p "Clipboard" -theme "gruvbox-dark-hard" -font "JetBrains Mono 12"
@@ -110,9 +116,10 @@ bindsym $MOD+Shift+Right move right
 
 bindsym $MOD+f fullscreen toggle
 bindsym $MOD+Shift+f fullscreen toggle global
-bindsym $MOD+space layout toggle
-bindsym $MOD+Shift+space floating toggle
+bindsym $MOD+space floating toggle
+bindsym $MOD+Shift+space layout toggle
 bindsym $MOD+z split toggle
+bindsym $MOD+Shift+p focus parent
 
 bindsym $MOD+1 workspace $WS1
 bindsym $MOD+2 workspace $WS2
@@ -126,7 +133,7 @@ bindsym $MOD+9 workspace $WS9
 bindsym $MOD+0 workspace $WS10
 # Use Alt+Tab to flip to chat
 bindsym Mod1+Tab workspace $WS10
-bindsym $MOD+BackSpace move workspace to output left
+bindsym $MOD+BackSpace move workspace to output next
 
 bindsym $MOD+Shift+1 move container to workspace $WS1
 bindsym $MOD+Shift+2 move container to workspace $WS2
@@ -144,13 +151,15 @@ bindsym $MOD+minus scratchpad show
 
 bindsym $MOD+Shift+c reload
 bindsym $MOD+Shift+r restart
-# Audio handlers
+# Utility handlers
 bindsym XF86AudioMute $RUN pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioLowerVolume $RUN pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioRaiseVolume $RUN pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioPlay $RUN playerctl play-pause
 bindsym XF86AudioPrev $RUN playerctl previous
 bindsym XF86AudioNext $RUN playerctl next
+bindsym XF86MonBrightnessUp $RUN xbacklight -inc 5
+bindsym XF86MonBrightnessDown $RUN xbacklight -dec 5
 
 # Custom mode for power options
 mode "Power/Resize" {

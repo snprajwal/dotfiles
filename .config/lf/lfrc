@@ -1,7 +1,7 @@
 set shell zsh
 set info size
-set dircounts on
-set drawbox on
+set dircounts true
+set drawbox true
 
 map <backspace2> push zh
 map D delete
@@ -9,7 +9,7 @@ map <delete> delete
 map gr cd /
 map gu cd /usr/share
 map ge cd /etc
-map gd cd /run/media/prajwalsn
+map gd cd /run/media/snprajwal
 map gn push %mkdir<space>
 
 cmd open &setsid $OPENER $f

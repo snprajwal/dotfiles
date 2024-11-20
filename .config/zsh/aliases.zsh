@@ -1,17 +1,16 @@
 # General aliases
 alias -g md='mkdir -p'
 alias -g rd='rm -r'
-alias c=clear
 alias df='df -h'
 alias ds='du -h -d 1 | sort -hr'
 alias g=git
+alias ls='ls --color'
 alias l="ls -lFh"
 alias la="ls -lAFh"
-alias ls='ls --color'
 alias nd='nix develop -c zsh'
 alias pake="make -j $(nproc)"
 alias q=exit
-alias rs='sudo -i /bin/zsh'
+alias rs='sudo -E -s /bin/zsh'
 alias s=sudo
 alias sv='sudoedit'
 alias sys='sudo systemctl'
@@ -22,6 +21,7 @@ alias yt="youtube-dl -x -o '~/music/concerts/%(title)s.%(ext)s'"
 # Configs
 alias cfa='nvim ~/.config/zsh/aliases.zsh'
 alias cfi='nvim ~/.config/i3/config'
+alias cfg='nvim ~/.gitconfig'
 alias cft='nvim ~/.tmux.conf'
 alias cfv='nvim ~/.config/nvim/init.vim'
 alias cfz='nvim ~/.zshrc'
@@ -40,27 +40,19 @@ alias pi="p -S"
 alias pmir='reflector -c IN --sort rate | sudo tee /etc/pacman.d/mirrorlist; \
 			reflector -l 20 --sort rate | sudo tee -a /etc/pacman.d/mirrorlist'
 alias prm="p -Rns"
-alias pu="p -Syu; paru -Sua; nvim --headless +PlugUpgrade +PlugUpdate +CocUpdateSync +qa"
+pu() {
+	echo "Upgrading Arch packages..."
+	sudo pacman -Syu
+	echo "Upgrading AUR packages..."
+	paru -Sua
+	echo "Upgrading Rust toolchain..."
+	rustup update
+	echo "Upgrading Neovim components..."
+	nvim +PlugUpgrade +PlugUpdate +CocUpdateSync +qa
+}
 
+alias br='sudo systemctl restart bluetooth'
 
-# Wifi
-alias wr='sudo systemctl restart iwd'
-wifi() {
-	local HOME='Oromis'
-	local HOTSPOT='Naegling'
-	case "$1" in
-		"")
-			iwctl station wlan0 scan
-			iwctl station wlan0 get-networks
-			;;
-		home)
-			iwctl station wlan0 connect $HOME
-			;;
-		hs)
-			iwctl station wlan0 connect $HOTSPOT
-			;;
-		*)
-			iwctl station wlan0 connect $1
-			;;
-	esac
+compress() {
+	convert "$1" -strip -quality 85% -interlace plane -gaussian-blur 0.05 -adaptive-resize 60% compressed/"$1"
 }
