@@ -1,6 +1,6 @@
 [user]
 	email = prajwalnadig21@gmail.com
-	name = Prajwal S N
+	name = Prajwal Nadig
 	signingkey = 60701A603988FAC2
 [url "git@github.com:"]
 	insteadOf = "gh:"
@@ -9,6 +9,7 @@
 	defaultBranch = main
 [commit]
 	gpgsign = true
+	verbose = true
 [alias]
 	a = add
 	b = "!SUCCESS=$(git switch $1 2>&1); \
@@ -22,8 +23,9 @@
 		fi #"
 	bd = "!if [[ $(git branch -l $1) ]]; then \
 			read -e -n 1 -p \"Delete branch $1 [Y/n]? \" CHOICE; \
-		if [[ $CHOICE = \"y\" ]]; then \
+			if [[ $CHOICE = \"y\" ]]; then \
 				git branch -D $1; \
+				git branch -d -r origin/$1; \
 			fi; \
 			read -e -n 1 -p \"Delete remote branch $1 [Y/n]? \" CHOICE; \
 			if [[ $CHOICE = \"y\" ]]; then \
@@ -35,7 +37,7 @@
 	bl = blame
 	br = branch -a
 	cl = clone
-	fork = "!git clone $1 && git remote add upstream $2 #"
+	fork = "!git clone gh:snprajwal/$(basename $1 .git) && cd $(basename $1 .git) && git remote add upstream $1 #"
 	cm = commit -s
 	cma = commit --amend
 	cman = commit --amend --no-edit
@@ -61,7 +63,8 @@
 		git switch $BRANCH && \
 		git pull upstream $BRANCH && \
 		git push && \
-		git switch - #"
+		git switch - && \
+		git rebase $BRANCH #"
 [push]
 	autoSetupRemote = true
 [pull]

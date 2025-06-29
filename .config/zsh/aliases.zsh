@@ -51,8 +51,26 @@ pu() {
 	nvim +PlugUpgrade +PlugUpdate +CocUpdateSync +qa
 }
 
+#Bluetooth
 alias br='sudo systemctl restart bluetooth'
-
-compress() {
-	convert "$1" -strip -quality 85% -interlace plane -gaussian-blur 0.05 -adaptive-resize 60% compressed/"$1"
+# Wifi
+alias wr='sudo systemctl restart iwd'
+wifi() {
+	local HOME='Oromis'
+	local HOTSPOT='Naegling'
+	case "$1" in
+		"")
+			iwctl station wlan0 scan
+			iwctl station wlan0 get-networks
+			;;
+		home)
+			iwctl station wlan0 connect $HOME
+			;;
+		hs)
+			iwctl station wlan0 connect $HOTSPOT
+			;;
+		*)
+			iwctl station wlan0 connect $1
+			;;
+	esac
 }

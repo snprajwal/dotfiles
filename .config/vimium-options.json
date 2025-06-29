@@ -1,5 +1,5 @@
 {
-  "keyMappings": "map o Vomnibar.activate keyword=dd\nmap t Vomnibar.activateInNewTab keyword=dd\nmap D passNextKey\n# switch the bindings around to move tabs\nmap J nextTab\nmap K previousTab",
+  "keyMappings": "map o Vomnibar.activate keyword=dd\nmap t Vomnibar.activateInNewTab keyword=dd\nmap D passNextKey\n# switch the bindings around to move tabs\nmap J nextTab\nmap K previousTab\nunmap r",
   "regexFindMode": true,
   "searchEngines": "dd: https://duckduckgo.com/?q=%s DuckDuckGo\nr: https://duckduckgo.com/?q=%s%20site%3Areddit.com DDG+Reddit\ny: https://www.youtube.com/results?search_query=%s YouTube\ngh: https://github.com/snprajwal/%s My GitHub",
   "searchUrl": "https://duckduckgo.com/?q=",
@@ -33,6 +33,14 @@
     {
       "passKeys": "",
       "pattern": "https?://cstimer.net/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://excalidraw.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://app.coderpad.io/*"
     }
   ]
 }

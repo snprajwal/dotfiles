@@ -1,5 +1,5 @@
 {
   "coc.preferences.formatOnSave": true,
+  "diagnostic.virtualText": true,
   "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
-  "snippets.ultisnips.pythonPrompt": false,
 }

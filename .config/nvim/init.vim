@@ -109,6 +109,7 @@ nnoremap <silent> <Leader>t	:split term://zsh<CR>
 nnoremap <silent> <Esc> :noh<CR>
 nnoremap <silent> <Leader>e :call ListFiles()<CR>
 nnoremap <silent> <Leader>g :G<CR>
+nnoremap <F5> :split term://g++ cp.cpp && ./a.out<CR>
 "" Better navigation mappings
 nnoremap j gj
 nnoremap gj j
@@ -133,9 +134,18 @@ nmap [e <Plug>(coc-diagnostic-prev)
 nmap ]e <Plug>(coc-diagnostic-next)
 nmap <Leader>rn <Plug>(coc-rename)
 nmap <Leader>rf <Plug>(coc-refactor)
-nmap <Leader>do <Plug>(coc-codeaction-cursor)
+nmap <Leader>a <Plug>(coc-codeaction-cursor)
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>qf  <Plug>(coc-fix-current)
 nnoremap <Leader>fv :CocSearch <C-r>=expand("<cword>")<CR><CR>
 nnoremap <silent> K :call <SID>ShowDocumentation()<CR>
 inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : CheckBackspace() ? "\<Tab>" : coc#refresh()
 inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : CheckBackspace() ? "\<S-Tab>" : coc#refresh()
 inoremap <silent> <expr> <CR> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
+" CoC floating window navigation
+nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"

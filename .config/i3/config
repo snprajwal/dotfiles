@@ -81,7 +81,7 @@ $RUN nm-applet
 # Keybindings
 bindsym $MOD+Control+l $RUN $LOCKER
 bindsym $MOD+Return $RUN st
-bindsym $MOD+Shift+w $RUN firefox -P Bloop
+# bindsym $MOD+w $RUN firefox -P Work
 bindsym $MOD+c $RUN st -c nvim -e nvim +Files
 bindsym $MOD+e $RUN st -c lf -e lf
 bindsym $MOD+d $RUN rofi -show run -display-run "Run" -theme "gruvbox-dark-hard" -font "JetBrains Mono 12"
