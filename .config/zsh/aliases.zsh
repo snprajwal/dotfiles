@@ -32,6 +32,7 @@ alias -g G='| rg'
 alias -g H='| head'
 alias -g L='| less -R'
 alias -g T='| tail'
+alias -g Y='| xclip -selection clipboard'
 
 # Packages
 alias p='sudo pacman'

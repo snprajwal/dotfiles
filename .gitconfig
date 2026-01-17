@@ -37,7 +37,6 @@
 	bl = blame
 	br = branch -a
 	cl = clone
-	fork = "!git clone gh:snprajwal/$(basename $1 .git) && cd $(basename $1 .git) && git remote add upstream $1 #"
 	cm = commit -s
 	cma = commit --amend
 	cman = commit --amend --no-edit
