@@ -47,7 +47,7 @@
 	ps = push
 	pf = push --force-with-lease
 	rb = "!git rebase -i HEAD~$1 #"
-	rbm = "!BRANCH=$(git rev-parse --abbrev-ref origin/HEAD | cut -d/ -f2); \
+	rbm = "!BRANCH=$(git rev-parse --abbrev-ref origin/HEAD | sed 's#^origin/##'); \
 		git switch $BRANCH && \
 		git pull && \
 		git switch - && \
@@ -58,12 +58,22 @@
 	s = status
 	st = stash
 	sp = stash pop
-	up = "!BRANCH=$(git rev-parse --abbrev-ref origin/HEAD | cut -d/ -f2); \
+	up = "!BRANCH=$(git rev-parse --abbrev-ref origin/HEAD | sed 's#^origin/##'); \
 		git switch $BRANCH && \
 		git pull upstream $BRANCH && \
 		git push && \
 		git switch - && \
 		git rebase $BRANCH #"
+    clean-branches = "!git pull --prune; \
+        for BRANCH in $(git for-each-ref --format='%(refname:short)' refs/heads/); do \
+            if ! git rev-parse --abbrev-ref \"$BRANCH@{upstream}\" > /dev/null 2>&1; then \
+                read -e -n 1 -p \"Delete local branch '$BRANCH'? [y/N] \" CHOICE; \
+                case $CHOICE in \
+                    [Yy]*) git branch -D \"$BRANCH\" ;; \
+                    *) echo \"Keeping $BRANCH...\" ;; \
+                esac \
+            fi \
+        done #"
 [push]
 	autoSetupRemote = true
 [pull]

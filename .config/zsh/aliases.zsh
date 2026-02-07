@@ -20,7 +20,7 @@ alias yt="youtube-dl -x -o '~/music/concerts/%(title)s.%(ext)s'"
 
 # Configs
 alias cfa='nvim ~/.config/zsh/aliases.zsh'
-alias cfi='nvim ~/.config/i3/config'
+alias cfs='nvim ~/.config/sway/config'
 alias cfg='nvim ~/.gitconfig'
 alias cft='nvim ~/.tmux.conf'
 alias cfv='nvim ~/.config/nvim/init.vim'
@@ -38,8 +38,12 @@ alias -g Y='| xclip -selection clipboard'
 alias p='sudo pacman'
 alias pd='sudo -E pacdiff'
 alias pi="p -S"
-alias pmir='reflector -c IN --sort rate | sudo tee /etc/pacman.d/mirrorlist; \
-			reflector -l 20 --sort rate | sudo tee -a /etc/pacman.d/mirrorlist'
+alias pmir='sudo reflector \
+  --country GB \
+  --latest 20 \
+  --protocol https \
+  --sort rate \
+  --save /etc/pacman.d/mirrorlist'
 alias prm="p -Rns"
 pu() {
 	echo "Upgrading Arch packages..."

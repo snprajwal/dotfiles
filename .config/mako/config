@@ -1,0 +1,42 @@
+### Global ###
+font=Noto Sans 12
+markup=1
+
+anchor=top-right
+margin=5,30
+padding=10
+
+max-visible=5
+default-timeout=4000
+
+border-size=2
+border-radius=10
+border-color=#d5c4a1
+
+background-color=#504945e6
+text-color=#d5c4a1
+
+format=<i>%a</i>\n<b>%s</b>\n%b
+
+text-alignment=left
+
+### Low urgency ###
+[urgency=low]
+background-color=#3c3836e6
+text-color=#665c54
+border-color=#d5c4a1
+default-timeout=2000
+
+### Normal urgency ###
+[urgency=normal]
+background-color=#504945e6
+text-color=#d5c4a1
+border-color=#d5c4a1
+default-timeout=4000
+
+### Critical urgency ###
+[urgency=critical]
+background-color=#fb4934e6
+text-color=#ebdbb2
+border-color=#d5c4a1
+default-timeout=0
