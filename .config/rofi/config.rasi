@@ -1,0 +1,10 @@
+configuration {
+  font: "JetBrains Mono 12";
+  run {
+    display-name: "Run";
+  }
+  clipboard {
+    display-name: "Clipboard";
+  }
+}
+@theme "gruvbox-dark-hard"

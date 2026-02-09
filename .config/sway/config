@@ -1,5 +1,5 @@
-# Sway config file
 font pango: Noto Sans 11
+xwayland disable
 
 # Variables
 set $MOD Mod4
@@ -18,19 +18,21 @@ set $WS10 10:
 # Input
 input type:keyboard {
     xkb_layout "us"
-	xkb_variant "colemak"
-	xkb_options "caps:swapescape"
+    xkb_variant "colemak"
+    xkb_options "caps:swapescape"
 }
 
-input "Brisingr Keyboard" {
+input "7504:24926:Brisingr_Keyboard" {
     xkb_layout "us"
+    xkb_variant ""
+    xkb_options ""
 }
 
 input type:touchpad {
     click_method clickfinger
-	tap enabled
-	natural_scroll enabled
-	pointer_accel 0.5
+    tap enabled
+    natural_scroll enabled
+    pointer_accel 0.5
 }
 
 # Properties
@@ -46,46 +48,45 @@ client.placeholder      #1d2021 #1d2021 #ebdbb2 #1d2021   #1d2021
 client.background       #ebdbb2
 
 bar {
-	position top
-	status_command i3status
-	separator_symbol 
-	strip_workspace_numbers yes
-	colors {
-		background #1d2021bb
-		statusline #ebdbb2
-		separator  #928374
-		# class 		   border  bground text
-		focused_workspace  #928374 #928374 #ebdbb2
-		active_workspace   #1d2021 #928374 #ebdbb2
-		inactive_workspace #1d2021 #1d2021 #a89984
-		urgent_workspace   #fb4934 #fb4934 #ebdbb2
-		}
+    position top
+    status_command i3status
+    separator_symbol 
+    strip_workspace_numbers yes
+    colors {
+        background #1d2021bb
+        statusline #ebdbb2
+        separator  #928374
+        # class            border  bground text
+        focused_workspace  #928374 #928374 #ebdbb2
+        active_workspace   #1d2021 #928374 #ebdbb2
+        inactive_workspace #1d2021 #1d2021 #a89984
+        urgent_workspace   #fb4934 #fb4934 #ebdbb2
+        }
 }
 # Workspace rules
 workspace_auto_back_and_forth yes
 workspace $WS2 output eDP-1
 # Window rules
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="dialog"] floating enable
-for_window [window_role="menu"] floating enable
-for_window [class="mpv"] floating enable
+for_window [app_id="mpv"] floating enable
 for_window [workspace=$WS1] layout tabbed
 for_window [workspace=$WS3] layout tabbed
 for_window [workspace=$WS4] layout tabbed
 for_window [workspace=$WS10] layout tabbed
-for_window [title="WhatsApp — Mozilla Firefox"] move to workspace $WS10
-assign [class="firefox" window_role="browser"] $WS1
-assign [class="nvim"] $WS3
-assign [class="Signal"] $WS10
+assign [app_id="firefox"] $WS1
+assign [app_id="nvim"] $WS3
+assign [title=".*WhatsApp.*"] $WS10
+assign [app_id="Signal"] $WS10
 
 # Wallpaper
-exec_always --no-startup-id swaybg -m fill -i $(ls -1 ~/.local/share/wallpaper/* | shuf -n1)
+exec_always swaybg -m fill -i $(ls -1 ~/.local/share/wallpaper/* | shuf -n1)
 # Autostart
-exec --no-startup-id udiskie -aNsF
-exec --no-startup-id powerkit
-exec --no-startup-id blueman-applet
-exec --no-startup-id mako
-# exec --no-startup-id warpd
+exec /usr/lib/geoclue-2.0/demos/agent
+exec udiskie -aNsF
+exec blueman-applet
+exec mako
+exec shikane
+exec wl-paste -w cliphist store
+# Applications
 exec foot
 exec signal-desktop
 exec firefox
@@ -95,15 +96,11 @@ bindsym $MOD+Control+l exec $LOCKER
 bindsym $MOD+Return exec foot
 bindsym $MOD+c exec foot -a nvim -- nvim +Files
 bindsym $MOD+e exec foot -- lf
-bindsym $MOD+d exec rofi -show run -display-run "Run" -theme "gruvbox-dark-hard" -font "JetBrains Mono 12"
-bindsym $MOD+i exec rofi -modi emoji -show emoji -theme "gruvbox-dark-hard" -font "JetBrains Mono 12"
-bindsym $MOD+p exec CM_LAUNCHER=rofi clipmenu -p "Clipboard" -theme "gruvbox-dark-hard" -font "JetBrains Mono 12"
+bindsym $MOD+d exec rofi -show run
+bindsym $MOD+p exec rofi -modi clipboard:cliphist-rofi -show clipboard
 # Screenshots
-bindsym --release Print exec maim -s | \
-			xclip -selection clipboard -t 'image/png'
-bindsym --release Shift+Print exec maim -s | \
-			tee ~/misc/SS_$(date +%d%m%y_%H%M%S).png | \
-			xclip -selection clipboard -t 'image/png'
+bindsym --release Print exec grim -g "$(slurp)" - | wl-copy
+bindsym --release Shift+Print exec sh -c 'f=~/misc/SS_$(date +%d%m%y_%H%M%S).png; grim -g "$(slurp)" "$f" && wl-copy < "$f"'
 # Controls
 bindsym $MOD+q kill
 
@@ -175,18 +172,18 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
 # Custom mode for power options
 mode "Power/Resize" {
-	bindsym s exec $LOCKER && systemctl suspend --no-wall, mode "default"
-	bindsym e exec exec swaynag -t warning -m 'Do you really want to exit sway? This will end your Wayland session.' -B 'Yes' 'swaymsg exit'
-	bindsym r exec systemctl reboot --no-wall
-	bindsym p exec systemctl poweroff -i --no-wall
+    bindsym s exec $LOCKER && systemctl suspend --no-wall, mode "default"
+    bindsym e exec exec swaynag -t warning -m 'Do you really want to exit sway? This will end your Wayland session.' -B 'Yes' 'swaymsg exit'
+    bindsym r exec systemctl reboot --no-wall
+    bindsym p exec systemctl poweroff -i --no-wall
 
-	bindsym Left resize shrink width 10 px or 10 ppt
-	bindsym Down resize grow height 10 px or 10 ppt
-	bindsym Up resize shrink height 10 px or 10 ppt
-	bindsym Right resize grow width 10 px or 10 ppt
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
 
-	bindsym Escape mode "default"
-	bindsym $MOD+x mode "default"
+    bindsym Escape mode "default"
+    bindsym $MOD+x mode "default"
 }
 bindsym $MOD+x mode "Power/Resize"
 

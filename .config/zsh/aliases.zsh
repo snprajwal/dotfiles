@@ -1,6 +1,5 @@
 # General aliases
 alias -g md='mkdir -p'
-alias -g rd='rm -r'
 alias df='df -h'
 alias ds='du -h -d 1 | sort -hr'
 alias g=git
@@ -32,7 +31,7 @@ alias -g G='| rg'
 alias -g H='| head'
 alias -g L='| less -R'
 alias -g T='| tail'
-alias -g Y='| xclip -selection clipboard'
+alias -g Y='| wl-copy'
 
 # Packages
 alias p='sudo pacman'
@@ -61,7 +60,7 @@ alias br='sudo systemctl restart bluetooth'
 # Wifi
 alias wr='sudo systemctl restart iwd'
 wifi() {
-	local HOME='Oromis'
+	local HOME='Islingr'
 	local HOTSPOT='Naegling'
 	case "$1" in
 		"")

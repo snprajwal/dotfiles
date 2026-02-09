@@ -65,5 +65,5 @@ tztime date {
 }
 
 tztime time {
-	format = "<span foreground='#fabd2f'><b> %I:%M %P</b></span> "
+	format = "<span foreground='#fabd2f'><b> %H:%M</b></span> "
 }

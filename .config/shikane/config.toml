@@ -1,0 +1,20 @@
+[[profile]]
+name = "dual-4k"
+
+[[profile.output]]
+enable = true
+search = ["m=0x403D", "s=", "v=AU Optronics"]
+mode = "1920x1080@60Hz"
+position = "0,720"
+scale = 1.0
+transform = "normal"
+adaptive_sync = false
+
+[[profile.output]]
+enable = true
+search = ["m=LG HDR 4K", "s=0x00011A65", "v=LG Electronics"]
+mode = "3840x2160@60Hz"
+position = "1920,0"
+scale = 1.0
+transform = "normal"
+adaptive_sync = false
